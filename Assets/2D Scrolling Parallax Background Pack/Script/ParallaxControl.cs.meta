@@ -1,0 +1,18 @@
+fileFormatVersion: 2
+guid: a101550344b0001429f0219d8e86a50c
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences: []
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 319906
+  packageName: 2D Scrolling Parallax Background Pack
+  packageVersion: 1.0
+  assetPath: Assets/2D Scrolling Parallax Background Pack/Script/ParallaxControl.cs
+  uploadId: 756050
