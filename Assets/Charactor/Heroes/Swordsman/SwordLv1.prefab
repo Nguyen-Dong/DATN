@@ -1752,11 +1752,14 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5190088784960697690}
-  - component: {fileID: 7350358707428106724}
-  - component: {fileID: 1204834655895642388}
-  - component: {fileID: 438387618801715856}
+  - component: {fileID: 3354359699403161647}
+  - component: {fileID: 5322355541253005702}
+  - component: {fileID: 8544925864188453867}
+  - component: {fileID: 8283293985692177621}
+  - component: {fileID: 1794653377252459568}
+  - component: {fileID: 2697351436395248595}
   m_Layer: 0
-  m_Name: Sword
+  m_Name: SwordLv1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1770,15 +1773,52 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1572865977086598662}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -3.1, y: 0.6, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 880243559911130182}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &7350358707428106724
+--- !u!70 &3354359699403161647
+CapsuleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1572865977086598662}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_CompositeOperation: 0
+  m_CompositeOrder: 0
+  m_Offset: {x: -0.05924344, y: 1.2046223}
+  m_Size: {x: 1.0529418, y: 2.658824}
+  m_Direction: 0
+--- !u!114 &5322355541253005702
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1787,156 +1827,75 @@ MonoBehaviour:
   m_GameObject: {fileID: 1572865977086598662}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e9bab99a464f488298c9d9629a889d97, type: 3}
+  m_Script: {fileID: 11500000, guid: f85c7653ea06c4d48be3c5d437da7dc5, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: 
-  SpriteCollection: {fileID: 11400000, guid: 620e7b0c742440a4be6c065493edd0eb, type: 2}
-  Head: {fileID: 21300000, guid: 174bc157635e4532914988ddbf569498, type: 3}
-  HeadMask: {fileID: 21300000, guid: 693750ef760a417eb65ee4a3ad81f113, type: 3}
-  Ears: {fileID: 21300000, guid: 7e5b762ea8bf4dc6a2f9d1598eb3c6ea, type: 3}
-  Hair: {fileID: 21300000, guid: d57c3f5fedf646f0aad587e9914b351f, type: 3}
-  HairMask: {fileID: 465129833753716547}
-  Beard: {fileID: 0}
-  Body:
-  - {fileID: 21300004, guid: 7f049dfc29eb4a27a35fe07f89e20e2a, type: 3}
-  - {fileID: 21300002, guid: 7f049dfc29eb4a27a35fe07f89e20e2a, type: 3}
-  - {fileID: 21300022, guid: 7f049dfc29eb4a27a35fe07f89e20e2a, type: 3}
-  - {fileID: 21300010, guid: 7f049dfc29eb4a27a35fe07f89e20e2a, type: 3}
-  - {fileID: 21300008, guid: 7f049dfc29eb4a27a35fe07f89e20e2a, type: 3}
-  - {fileID: 21300016, guid: 7f049dfc29eb4a27a35fe07f89e20e2a, type: 3}
-  - {fileID: 21300018, guid: 7f049dfc29eb4a27a35fe07f89e20e2a, type: 3}
-  - {fileID: 21300012, guid: 7f049dfc29eb4a27a35fe07f89e20e2a, type: 3}
-  - {fileID: 21300006, guid: 7f049dfc29eb4a27a35fe07f89e20e2a, type: 3}
-  - {fileID: 21300014, guid: 7f049dfc29eb4a27a35fe07f89e20e2a, type: 3}
-  - {fileID: 21300020, guid: 7f049dfc29eb4a27a35fe07f89e20e2a, type: 3}
-  - {fileID: 21300000, guid: 7f049dfc29eb4a27a35fe07f89e20e2a, type: 3}
-  Expression: Default
-  Expressions:
-  - Name: Default
-    Eyebrows: {fileID: 21300000, guid: 334b86a048fc4651a618e411bb4b9bcf, type: 3}
-    Eyes: {fileID: 21300000, guid: 9830a5e93d174dec89a098759997b4ad, type: 3}
-    Mouth: {fileID: 21300000, guid: 34c4cbf6a3374fda8cb2d8c91e7d2b2d, type: 3}
-  - Name: Angry
-    Eyebrows: {fileID: 21300000, guid: 54a7303746524cc8bbcd3c819bc99961, type: 3}
-    Eyes: {fileID: 0}
-    Mouth: {fileID: 21300000, guid: 6b8e347645084b808329aa18a8d05499, type: 3}
-  - Name: Dead
-    Eyebrows: {fileID: 0}
-    Eyes: {fileID: 21300000, guid: 919ab049f42f490e94fc46adfc0f854d, type: 3}
-    Mouth: {fileID: 21300000, guid: fea9ed3a6bb54b03925cf963d316123c, type: 3}
-  Helmet: {fileID: 21300000, guid: f66c924bb9fa4d06943791a4d86d0a1e, type: 3}
-  Earrings: {fileID: 0}
-  Glasses: {fileID: 0}
-  Mask: {fileID: 0}
-  PrimaryMeleeWeapon: {fileID: 21300000, guid: d5d8ac770f724d9596951f76e0ad2d33, type: 3}
-  SecondaryMeleeWeapon: {fileID: 0}
-  Armor:
-  - {fileID: 21300012, guid: 33b2c3b8e52948e4b120df31ff7c8fad, type: 3}
-  - {fileID: 21300006, guid: 33b2c3b8e52948e4b120df31ff7c8fad, type: 3}
-  - {fileID: 21300014, guid: 33b2c3b8e52948e4b120df31ff7c8fad, type: 3}
-  - {fileID: 21300000, guid: 33b2c3b8e52948e4b120df31ff7c8fad, type: 3}
-  - {fileID: 21300002, guid: 33b2c3b8e52948e4b120df31ff7c8fad, type: 3}
-  - {fileID: 21300004, guid: 33b2c3b8e52948e4b120df31ff7c8fad, type: 3}
-  - {fileID: 21300010, guid: 33b2c3b8e52948e4b120df31ff7c8fad, type: 3}
-  - {fileID: 21300008, guid: 33b2c3b8e52948e4b120df31ff7c8fad, type: 3}
-  - {fileID: 21300016, guid: 880cea81678245ad926c8a2e990a0483, type: 3}
-  - {fileID: 21300018, guid: 880cea81678245ad926c8a2e990a0483, type: 3}
-  - {fileID: 21300020, guid: 880cea81678245ad926c8a2e990a0483, type: 3}
-  - {fileID: 21300022, guid: 880cea81678245ad926c8a2e990a0483, type: 3}
-  Cape: {fileID: 0}
-  Back: {fileID: 0}
-  Shield: {fileID: 0}
-  Bow: []
-  Firearms: []
-  HeadRenderer: {fileID: 3073522366621197617}
-  EarsRenderer: {fileID: 8724877005341226671}
-  HairRenderer: {fileID: 5208979942666960441}
-  EyebrowsRenderer: {fileID: 1235692008110702122}
-  EyesRenderer: {fileID: 4851349736623876795}
-  MouthRenderer: {fileID: 8712880528569575124}
-  BeardRenderer: {fileID: 2907331421227660215}
-  BodyRenderers:
-  - {fileID: 8135336403206659197}
-  - {fileID: 7881205591191680261}
-  - {fileID: 115296708308414494}
-  - {fileID: 7157517991720089068}
-  - {fileID: 4089208274633317623}
-  - {fileID: 6419018521460428206}
-  - {fileID: 1128798770501421837}
-  - {fileID: 8162130188254010761}
-  - {fileID: 5007952944249186326}
-  - {fileID: 8333718971697995063}
-  - {fileID: 1668501214489991621}
-  - {fileID: 4461897149277148545}
-  - {fileID: 6689614455601869098}
-  - {fileID: 4591115887160184256}
-  - {fileID: 2434754778837455943}
-  - {fileID: 7621752675158879607}
-  - {fileID: 6633803510932975825}
-  - {fileID: 4247007626521121221}
-  - {fileID: 5446947602774604983}
-  - {fileID: 60431953645359949}
-  - {fileID: 2799394754133219971}
-  - {fileID: 6022734007633324371}
-  - {fileID: 5850621709720705810}
-  - {fileID: 4904298912102590380}
-  HelmetRenderer: {fileID: 6902548677370839583}
-  GlassesRenderer: {fileID: 2096012868270634906}
-  MaskRenderer: {fileID: 6075425151717506131}
-  EarringsRenderer: {fileID: 4845659509317382012}
-  PrimaryMeleeWeaponRenderer: {fileID: 2235661423603182988}
-  SecondaryMeleeWeaponRenderer: {fileID: 546906620629809571}
-  ArmorRenderers:
-  - {fileID: 5646592601448631744}
-  - {fileID: 4903306260830168685}
-  - {fileID: 8433413083145017420}
-  - {fileID: 6456465651533698203}
-  - {fileID: 4073888654961851071}
-  - {fileID: 7758488968856265131}
-  - {fileID: 3073808365482189704}
-  - {fileID: 3399380716529308965}
-  - {fileID: 6711638137662224963}
-  - {fileID: 2643009871904372827}
-  - {fileID: 3669899961736768830}
-  - {fileID: 9141866311796688724}
-  - {fileID: 5436800936251073623}
-  - {fileID: 2767035652572523669}
-  - {fileID: 5645478363879901700}
-  - {fileID: 8276590491422334302}
-  - {fileID: 2311989469020213306}
-  - {fileID: 2971145978970125389}
-  - {fileID: 925967146639452663}
-  - {fileID: 3882128631290265165}
-  - {fileID: 8138757114391624747}
-  - {fileID: 2173642041349334537}
-  - {fileID: 6329265358507127749}
-  - {fileID: 5153345016705160323}
-  - {fileID: 4645750775621508251}
-  - {fileID: 7226767954177582017}
-  CapeRenderer: {fileID: 3918918132682654177}
-  BackRenderer: {fileID: 521304255733167848}
-  ShieldRenderer: {fileID: 167875015133251058}
-  BowRenderers:
-  - {fileID: 5748227580033037696}
-  - {fileID: 9165796177319542268}
-  - {fileID: 3952834382036376062}
-  - {fileID: 4586519343373899173}
-  - {fileID: 8326021514943084293}
-  - {fileID: 1039813961838958644}
-  - {fileID: 1605019829703523434}
-  FirearmsRenderers:
-  - {fileID: 1598104875149556415}
-  - {fileID: 1879276451158632001}
-  - {fileID: 2520167842834646874}
-  - {fileID: 3575101812917950145}
-  - {fileID: 5011783635415591400}
-  - {fileID: 7232610245753304633}
-  Animator: {fileID: 3271271061185589005}
-  WeaponType: 0
-  MeleeWeapon: {fileID: 4052214307939081268}
-  Firearm: {fileID: 3217562407926166035}
-  LayerManager: {fileID: 1204834655895642388}
---- !u!114 &1204834655895642388
+  m_EditorClassIdentifier: Assembly-CSharp::PlayerMovement
+  speed: 2
+--- !u!70 &8544925864188453867
+CapsuleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1572865977086598662}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_CompositeOperation: 0
+  m_CompositeOrder: 0
+  m_Offset: {x: -0.10861397, y: 1.1947485}
+  m_Size: {x: 0.9936981, y: 2.678572}
+  m_Direction: 0
+--- !u!50 &8283293985692177621
+Rigidbody2D:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1572865977086598662}
+  m_BodyType: 0
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDamping: 0
+  m_AngularDamping: 0.05
+  m_GravityScale: 0
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 0
+--- !u!114 &1794653377252459568
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1945,127 +1904,32 @@ MonoBehaviour:
   m_GameObject: {fileID: 1572865977086598662}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8f33505e333043a888a0224eaf767e80, type: 3}
+  m_Script: {fileID: 11500000, guid: fa0f9728596cf8847b13f5e240fd22c4, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: 
-  Sprites:
-  - {fileID: 5865853667265136315}
-  - {fileID: 521304255733167848}
-  - {fileID: 3918918132682654177}
-  - {fileID: 8135336403206659197}
-  - {fileID: 7881205591191680261}
-  - {fileID: 5007952944249186326}
-  - {fileID: 6711638137662224963}
-  - {fileID: 9165796177319542268}
-  - {fileID: 3952834382036376062}
-  - {fileID: 5748227580033037696}
-  - {fileID: 8333718971697995063}
-  - {fileID: 1668501214489991621}
-  - {fileID: 2643009871904372827}
-  - {fileID: 3669899961736768830}
-  - {fileID: 0}
-  - {fileID: 546906620629809571}
-  - {fileID: 4591115887160184256}
-  - {fileID: 4089208274633317623}
-  - {fileID: 4073888654961851071}
-  - {fileID: 2767035652572523669}
-  - {fileID: 5646592601448631744}
-  - {fileID: 4903306260830168685}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 5446947602774604983}
-  - {fileID: 6022734007633324371}
-  - {fileID: 925967146639452663}
-  - {fileID: 2173642041349334537}
-  - {fileID: 60431953645359949}
-  - {fileID: 5850621709720705810}
-  - {fileID: 3882128631290265165}
-  - {fileID: 6329265358507127749}
-  - {fileID: 7226767954177582017}
-  - {fileID: 8138757114391624747}
-  - {fileID: 7157517991720089068}
-  - {fileID: 6689614455601869098}
-  - {fileID: 5436800936251073623}
-  - {fileID: 6456465651533698203}
-  - {fileID: 4247007626521121221}
-  - {fileID: 2971145978970125389}
-  - {fileID: 4645750775621508251}
-  - {fileID: 115296708308414494}
-  - {fileID: 4461897149277148545}
-  - {fileID: 8433413083145017420}
-  - {fileID: 9141866311796688724}
-  - {fileID: 3073522366621197617}
-  - {fileID: 4851349736623876795}
-  - {fileID: 2907331421227660215}
-  - {fileID: 8712880528569575124}
-  - {fileID: 1235692008110702122}
-  - {fileID: 5208979942666960441}
-  - {fileID: 8724877005341226671}
-  - {fileID: 4845659509317382012}
-  - {fileID: 6075425151717506131}
-  - {fileID: 2096012868270634906}
-  - {fileID: 6902548677370839583}
-  - {fileID: 1039813961838958644}
-  - {fileID: 8326021514943084293}
-  - {fileID: 4586519343373899173}
-  - {fileID: 1605019829703523434}
-  - {fileID: 167875015133251058}
-  - {fileID: 1598104875149556415}
-  - {fileID: 3575101812917950145}
-  - {fileID: 0}
-  - {fileID: 2235661423603182988}
-  - {fileID: 5011783635415591400}
-  - {fileID: 2434754778837455943}
-  - {fileID: 2520167842834646874}
-  - {fileID: 6419018521460428206}
-  - {fileID: 7621752675158879607}
-  - {fileID: 7232610245753304633}
-  - {fileID: 5645478363879901700}
-  - {fileID: 8162130188254010761}
-  - {fileID: 7758488968856265131}
-  - {fileID: 8276590491422334302}
-  - {fileID: 3399380716529308965}
-  - {fileID: 6633803510932975825}
-  - {fileID: 1128798770501421837}
-  - {fileID: 2311989469020213306}
-  - {fileID: 3073808365482189704}
-  - {fileID: 5153345016705160323}
-  - {fileID: 1879276451158632001}
-  SortingGroup: {fileID: 5815866927319328194}
-  SortingOrderOffset: 0
-  SortingOrderStep: 5
-  ZStep: 0.00001
---- !u!114 &438387618801715856
-MonoBehaviour:
+  m_EditorClassIdentifier: Assembly-CSharp::EnemieMovement
+  speed: 2
+--- !u!95 &2697351436395248595
+Animator:
+  serializedVersion: 7
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1572865977086598662}
   m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fb76bf0bb72b4f2d9236b4a4e21bb2f4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  WidthSlider: {fileID: 0}
-  HeightSlider: {fileID: 0}
-  Head: {fileID: 987765155249162379}
-  Torso: {fileID: 217098113473503723}
-  ArmL: {fileID: 7501882866594073061}
-  ArmR:
-  - {fileID: 7857074029771756052}
-  - {fileID: 9189831074329070427}
-  Pelvis: {fileID: 3735026712688856990}
-  LegL: {fileID: 3196740239914247243}
-  LegR: {fileID: 9068772565874752005}
-  MeleeWeapon:
-  - {fileID: 4891796464751662966}
-  - {fileID: 4891796464751662966}
-  Shield: {fileID: 5224269003184193787}
-  Bow:
-  - {fileID: 2856983759245021149}
-  - {fileID: 2856983759245021149}
-  Firearm: {fileID: 9108141329176444289}
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 37667e13fcc94356a4387e81bde2355a, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_AnimatePhysics: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &1664084117222367210
 GameObject:
   m_ObjectHideFlags: 0
@@ -19897,9 +19761,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 9108141329176444289}
-  - component: {fileID: 3217562407926166035}
-  - component: {fileID: 2686596633356756474}
-  - component: {fileID: 8489833475771142227}
   - component: {fileID: 5587958923116414454}
   m_Layer: 0
   m_Name: Firearm
@@ -19929,95 +19790,6 @@ Transform:
   - {fileID: 4427166485589625813}
   m_Father: {fileID: 2366503991167615938}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: -110}
---- !u!114 &3217562407926166035
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5591523297192914535}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e0105e23e272418c94b0bbf1e7d02dee, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  AnimationEvents: {fileID: 827776090889689829}
-  Params:
-    Name: 
-    FirearmTexture: {fileID: 0}
-    Type: 0
-    HoldType: 0
-    MagazineType: 0
-    LoadType: 0
-    AutomaticFire: 0
-    AutomaticLoad: 0
-    FireRateInMinute: 0
-    MagazineCapacity: 0
-    Recoil: 0
-    Accuracy: 0
-    MuzzleVelocity: 0
-    SlidePosition: {x: 0, y: 0}
-    MagazinePosition: {x: 0, y: 0}
-    FireMuzzlePosition: {x: 0, y: 0}
-    FireMuzzlePrefab: {fileID: 0}
-    ProjectilePrefab: {fileID: 0}
-    SoundFire: {fileID: 0}
-    SoundClipIn: {fileID: 0}
-    SoundClipOut: {fileID: 0}
-    SoundLoad: {fileID: 0}
-    SoundPump: {fileID: 0}
-    HoldAnimation: {fileID: 0}
-    LoadAnimation: {fileID: 0}
-    ReloadAnimation: {fileID: 0}
-    Meta: []
-  SlideTransform: {fileID: 9222695195464256296}
-  MagazineTransform: {fileID: 6773226230812459918}
-  FireTransform: {fileID: 4427166485589625813}
-  Fire: {fileID: 2686596633356756474}
-  Reload: {fileID: 8489833475771142227}
-  AmmoShooted: 0
---- !u!114 &2686596633356756474
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5591523297192914535}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fe6073c44d26430a87a351b9a430bd08, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Character: {fileID: 7350358707428106724}
-  Firearm: {fileID: 3217562407926166035}
-  Finger: {fileID: 5874521507672852428}
-  Slide: {fileID: 3485538519319839736}
-  Forestock: {fileID: 9123075778026680783}
-  ArmL: {fileID: 2478557805028065302}
-  ArmR: {fileID: 7857074029771756052}
-  Shell: {fileID: 1736378898086106192}
-  FireMuzzle: {fileID: 7413172516534678173}
-  CreateBullets: 0
-  FireButtonDown: 0
-  FireButtonPressed: 0
-  FireButtonUp: 0
---- !u!114 &8489833475771142227
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5591523297192914535}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9615df837a0e43948b5e4c09b832dbed, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Character: {fileID: 7350358707428106724}
-  Firearm: {fileID: 3217562407926166035}
-  AudioSource: {fileID: 5587958923116414454}
-  ReloadButtonDown: 0
-  Reloading: 0
 --- !u!82 &5587958923116414454
 AudioSource:
   m_ObjectHideFlags: 0
