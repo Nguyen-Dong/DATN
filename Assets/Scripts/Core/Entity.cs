@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Runtime.CompilerServices;
 using UnityEngine;
 
-public class EntityManager : MonoBehaviour
+public abstract class Entity : MonoBehaviour
 {
     [HideInInspector] public Rigidbody2D rb;
     [HideInInspector] public bool createdDust;
@@ -34,12 +34,5 @@ public class EntityManager : MonoBehaviour
         gameObject.GetComponent<Collider2D>().enabled = false;
         rb.bodyType = RigidbodyType2D.Static;
     }
-    public float TimeAnimationClip(Animator animator, string nameClip)
-    {
-        AnimationClip[] clips = animator.runtimeAnimatorController.animationClips;
-        foreach (AnimationClip clip in clips)
-            if (clip.name == nameClip)
-                return clip.length;
-        return 0;
-    }
+
 }
