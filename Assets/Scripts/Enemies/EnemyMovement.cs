@@ -2,37 +2,54 @@ using UnityEngine;
 
 public class EnemyMovement : EntityMovement
 {
-    private Rigidbody2D rb;
+    protected Player m_player;
+    public int directionMove = 1;
     [SerializeField] private Animator anim;
+    [SerializeField] protected GameObject pointChangeDirCheck;
 
-    private void Awake()
+    protected void Reset()
     {
-        rb = GetComponentInParent<Rigidbody2D>();
+        Load();
+    }
+    protected void Load()
+    {
+        m_player = transform.parent.GetComponent<Player>();
+        //pointGroundCheck = transform.Find("GroundCheck").gameObject;
+        //pointWallCheck = transform.Find("WallCheck").gameObject;
     }
 
-    private void Start()
-    {
-        // Enemies face left by default
-        transform.rotation = Quaternion.Euler(0f, 180f, 0f);
-    }
 
     public override void Move(float direction)
     {
-        if (direction == 0)
-        {
-            // Stop moving, could be idle or attacking
-            if (anim != null) anim.SetInteger("State", 0);
-            transform.Translate(Vector2.zero);
-            return;
-        }
-
-        // Move in the given direction (relative to the enemy's orientation)
-        transform.Translate(Vector2.right * speed * direction * Time.deltaTime);
-        if (anim != null) anim.SetInteger("State", 2);
+        //if (direction > 0)
+        //    transform.parent.localScale = new Vector3(1, 1, 1);
+        if (direction < 0)
+            transform.parent.localScale = new Vector3(-1, 1, 1);
+        Debug.Log("Move Enemy");
+        Vector2 velocity = transform.parent.GetComponent<Rigidbody2D>().linearVelocity;
+        transform.parent.GetComponent<Rigidbody2D>().linearVelocity = new Vector2(direction * speed, velocity.y);
+        anim.SetInteger("State", 2);
     }
     public override void Jump()
     {
-        
+
+    }
+    protected bool ChangeDirectionCheck()
+    {
+        Debug.DrawRay(pointChangeDirCheck.transform.position, Vector3.down);
+        RaycastHit2D colliderCheckGround = Physics2D.Raycast(pointChangeDirCheck.transform.position, Vector3.down, 1, LayerMask.GetMask("Ground"));
+        Debug.DrawRay(pointChangeDirCheck.transform.position, Vector3.left * transform.parent.localScale.x);
+        RaycastHit2D collidersCheckWall = Physics2D.Raycast(pointChangeDirCheck.transform.position, Vector3.left * transform.parent.localScale.x, 1, LayerMask.GetMask("Ground"));
+
+        if (colliderCheckGround.collider == null)
+        {
+            return true;
+        }
+        if (collidersCheckWall.collider != null)
+        {
+            return true;
+        }
+        return false;
     }
 
     //public override bool GroundCheck()

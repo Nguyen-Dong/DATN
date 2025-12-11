@@ -3,36 +3,58 @@ using UnityEngine;
 [RequireComponent(typeof(EnemyMovement))]
 public class Enemy : Entity
 {
-    [HideInInspector] public EnemyMovement movement;
-    // TODO: Add reference to an EnemyAttack script
+    [HideInInspector] public bool lieDown;
 
-    private bool isAttacking = false; // Placeholder for attack logic
-
-    protected override void Start()
+    public void StartLie(float time = 1)
     {
-        base.Start();
-        movement = GetComponent<EnemyMovement>();
+        lieDown = true;
+        //rb.bodyType = RigidbodyType2D.Static;
+        Invoke(nameof(EndLie), time);
+    }
+    private void EndLie()
+    {
+        lieDown = false;
+        rb.AddForce(Vector3.up * 450);
+        //rb.bodyType = RigidbodyType2D.Dynamic;
+    }
+    public bool CanMove()
+    {
+        if (dead || lieDown) return false;
+        else return true;
     }
 
-    private void Update()
-    {
-        if (dead)
-        {
-            // If you have a death animation, the movement script might need to be handled differently
-            return;
-        }
 
-        // A real implementation would get this from an EnemyAttack script
-        if (isAttacking) 
-        {
-            movement.Move(0);
-        }
-        else
-        {
-            movement.Move(1); // Move forward (relative to orientation)
-        }
-    }
 
-    // TODO: Implement logic to set isAttacking based on collision/range from an attack script.
-    // For example, an EnemyAttack script could raise an event or set a property on this class.
+    //[HideInInspector] public EnemyMovement movement;
+    //// TODO: Add reference to an EnemyAttack script
+
+    //private bool isAttacking = false; // Placeholder for attack logic
+
+    //protected override void Start()
+    //{
+    //    base.Start();
+    //    movement = GetComponent<EnemyMovement>();
+    //}
+
+    //private void Update()
+    //{
+    //    if (dead)
+    //    {
+    //        // If you have a death animation, the movement script might need to be handled differently
+    //        return;
+    //    }
+
+    //    // A real implementation would get this from an EnemyAttack script
+    //    if (isAttacking) 
+    //    {
+    //        movement.Move(0);
+    //    }
+    //    else
+    //    {
+    //        movement.Move(1); // Move forward (relative to orientation)
+    //    }
+    //}
+
+    //// TODO: Implement logic to set isAttacking based on collision/range from an attack script.
+    //// For example, an EnemyAttack script could raise an event or set a property on this class.
 }
