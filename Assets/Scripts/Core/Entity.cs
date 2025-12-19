@@ -28,7 +28,7 @@ public abstract class Entity : MonoBehaviour
     {
         currentHealth += health;
     }
-    public void EntityDie()
+    public virtual void EntityDie()
     {
         dead = true;
         gameObject.GetComponent<Collider2D>().enabled = false;

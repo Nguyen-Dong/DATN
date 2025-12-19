@@ -12,7 +12,7 @@ public class SwordMovement : PlayerMovement
     void Update()
     {
         if (!sword.CanMove()) return;
-        if (sword.attack.DetectPlayer()) return;
+        if (sword.attack.DetectEnemy()) return;
         //if (ChangeDirectionCheck())
         //    directionMove *= -1;
 

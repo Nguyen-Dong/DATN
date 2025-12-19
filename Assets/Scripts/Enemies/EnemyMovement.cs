@@ -2,8 +2,8 @@ using UnityEngine;
 
 public class EnemyMovement : EntityMovement
 {
-    protected Player m_player;
-    public int directionMove = 1;
+    protected Enemy m_enemy;
+    public int directionMove = -1;
     [SerializeField] private Animator anim;
     [SerializeField] protected GameObject pointChangeDirCheck;
 
@@ -13,7 +13,7 @@ public class EnemyMovement : EntityMovement
     }
     protected void Load()
     {
-        m_player = transform.parent.GetComponent<Player>();
+        m_enemy = transform.parent.GetComponent<Enemy>();
         //pointGroundCheck = transform.Find("GroundCheck").gameObject;
         //pointWallCheck = transform.Find("WallCheck").gameObject;
     }

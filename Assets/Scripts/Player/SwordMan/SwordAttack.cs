@@ -25,7 +25,7 @@ public class SwordAttack : PlayerAttack
     }
     private void Attack()
     {
-        if (DetectPlayer())
+        if (DetectEnemy())
         {
             attacked = true;
             attacking = true;
@@ -52,7 +52,7 @@ public class SwordAttack : PlayerAttack
             }
         }
     }
-    public bool DetectPlayer()
+    public bool DetectEnemy()
     {
         foreach (GameObject point in attackPoints)
         {

@@ -2,17 +2,17 @@ using UnityEngine;
 
 public class SwordEnemyMovement : EnemyMovement
 {
-    protected SwordEnemy sword;
+    protected SwordEnemy sword_E;
     protected int oldDirection;
     protected void Start()
     {
         Load();
-        sword = GetComponentInParent<SwordEnemy>();
+        sword_E = GetComponentInParent<SwordEnemy>();
     }
     void Update()
     {
-        if (!sword.CanMove()) return;
-        if (sword.attack.DetectPlayer()) return;
+        if (!sword_E.CanMove()) return;
+        if (sword_E.attack.DetectPlayer()) return;
         //if (ChangeDirectionCheck())
         //    directionMove *= -1;
 

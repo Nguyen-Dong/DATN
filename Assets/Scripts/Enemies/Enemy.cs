@@ -1,6 +1,5 @@
 using UnityEngine;
 
-[RequireComponent(typeof(EnemyMovement))]
 public class Enemy : Entity
 {
     [HideInInspector] public bool lieDown;
