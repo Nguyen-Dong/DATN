@@ -12,7 +12,15 @@ public class SwordMovement : PlayerMovement
     void Update()
     {
         if (!sword.CanMove()) return;
-        if (sword.attack.DetectEnemy()) return;
+        if (sword.attack.DetectEnemy())
+        {
+            transform.parent.GetComponent<Rigidbody2D>().linearVelocity = Vector2.zero;
+            if(anim != null)
+            {
+                anim.SetInteger("State", 0);
+            }    
+            return;
+        }
         //if (ChangeDirectionCheck())
         //    directionMove *= -1;
 

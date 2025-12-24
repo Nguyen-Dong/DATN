@@ -4,7 +4,7 @@ public class EnemyMovement : EntityMovement
 {
     protected Enemy m_enemy;
     public int directionMove = -1;
-    [SerializeField] private Animator anim;
+    [SerializeField] protected Animator anim;
     [SerializeField] protected GameObject pointChangeDirCheck;
 
     protected void Reset()

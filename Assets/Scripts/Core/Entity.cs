@@ -28,6 +28,15 @@ public abstract class Entity : MonoBehaviour
     {
         currentHealth += health;
     }
+    public void SetMaxHealth(float newMaxHealth)
+    {
+        maxHealth = newMaxHealth;
+        currentHealth = maxHealth;
+    }
+    public void HealFull()
+    {
+        currentHealth = maxHealth;
+    }
     public virtual void EntityDie()
     {
         dead = true;

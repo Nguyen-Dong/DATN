@@ -6,6 +6,7 @@ public class SwordEnemy : Enemy
     public SwordEnemyAttack attack;
     public AnimationEvents animationEvent;
     public EnemyMovement movement;
+    [SerializeField] private int goldDrop = 20;
 
     protected override void Start()
     {
@@ -30,6 +31,10 @@ public class SwordEnemy : Enemy
 
     public override void EntityDie()
     {
+        if(!dead)
+        {
+            CurrencyManager.Instance.AddGold(goldDrop);
+        }
         base.EntityDie();
         attack.animator.SetInteger("State", 7);
         float timetoDestroy = attack.animator.GetCurrentAnimatorStateInfo(0).length;

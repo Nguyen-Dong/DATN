@@ -18,10 +18,16 @@ public class SwordEnemyAttack : EnemyAttack
     private void Update()
     {
         if (!sword_E.CanMove()) return;
-        if (CanAttack())
+        bool playerDetected = DetectPlayer();
+        animator.SetBool("Ready", playerDetected);
+        if (playerDetected)
         {
-            Attack();
+            if (CanAttack())
+            {
+                Attack();
+            }
         }
+        
     }
     private void Attack()
     {
