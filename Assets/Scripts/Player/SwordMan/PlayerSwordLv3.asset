@@ -12,8 +12,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dea781d6d99968d42b79fb424f23f32e, type: 3}
   m_Name: PlayerSwordLv3
   m_EditorClassIdentifier: Assembly-CSharp::UnitLevelSO
-  levelName: 
-  upgradeCost: 150
-  maxHealth: 150
-  damage: 15
+  formName: 
   visualPrefab: {fileID: 1713688330509164007, guid: 69763a6d7851dfd4b90413b23963af4a, type: 3}
+  evolveCost: 180
+  baseDamage: 30
+  baseHealth: 200
+  baseSpeed: 1
+  damagePerLevel: 2
+  healthPerLevel: 5
+  speedPerLevel: 0.2

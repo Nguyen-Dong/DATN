@@ -26,4 +26,9 @@ public class SwordMovement : PlayerMovement
 
         Move(directionMove);
     }
+
+    public void SetAnimator(Animator a)
+    {
+        anim = a;
+    }
 }
