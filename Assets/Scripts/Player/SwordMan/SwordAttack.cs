@@ -50,10 +50,9 @@ public class SwordAttack : PlayerAttack
                 if (col.gameObject.layer == LayerMask.NameToLayer("Enemy"))
                 {
                     Enemy enemy = col.gameObject.GetComponent<Enemy>();
-
+                    Debug.Log("Attack Enemy");
                     //Do some thing
                     enemy.TakeDamage(damage);
-                    
                 }
             }
         }

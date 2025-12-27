@@ -19,6 +19,7 @@ public abstract class Entity : MonoBehaviour
     public virtual void TakeDamage(float damage)
     {
         currentHealth -= damage;
+        Debug.Log(gameObject.name + " took " + damage + " damage.");
         if (currentHealth <= 0)
         {
             EntityDie();

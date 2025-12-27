@@ -53,7 +53,6 @@ public class SwordEnemyAttack : EnemyAttack
 
                     //Do some thing
                     player.TakeDamage(damage);
-
                 }
             }
         }

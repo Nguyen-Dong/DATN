@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections.Generic;
+using Assets.HeroEditor.Common.CharacterScripts;
 
 public class StatUpgrader : MonoBehaviour
 {
@@ -16,14 +17,14 @@ public class StatUpgrader : MonoBehaviour
     private Entity _entity;
     private EntityAttack _entityAttack;
     private EntityMovement _entityMovement;
-    private Transform _visualContainer;
+    private LayerManager _visualContainer;
 
     private void Start()
     {
         _entity = GetComponent<Entity>();
-        _entityAttack = GetComponent<EntityAttack>();
-        _entityMovement = GetComponent<EntityMovement>();
-        _visualContainer = transform.Find("Visual");
+        _entityAttack = GetComponentInChildren<EntityAttack>();
+        _entityMovement = GetComponentInChildren<EntityMovement>();
+        _visualContainer = GetComponent<LayerManager>();
         
         if(forms.Count > 0)
         {             
@@ -89,18 +90,17 @@ public class StatUpgrader : MonoBehaviour
     {
         if(form.visualPrefab != null && _visualContainer != null)
         {
-            foreach(Transform child in _visualContainer)
+            for(int i = 0; i < _visualContainer.Sprites.Count;i++)
             {
-                Destroy(child.gameObject);
+                LayerManager layerManager = form.visualPrefab.GetComponent<LayerManager>();
+                if (_visualContainer.Sprites[i] != null && layerManager.Sprites[i] != null)
+                {
+                    _visualContainer.Sprites[i].sprite = layerManager.Sprites[i].sprite;
+                    _visualContainer.Sprites[i].color = layerManager.Sprites[i].color;
+                }
+                
             }
-            GameObject newVisual = Instantiate(form.visualPrefab, _visualContainer);
-            newVisual.transform.localPosition = Vector3.zero;
-
-            Animator newAnim = newVisual.GetComponent<Animator>();
-            if(_entityAttack is SwordAttack swordAttack)
-            { swordAttack.animator = newAnim; }
-            if(_entityMovement is SwordMovement swordMovement)
-            { swordMovement.SetAnimator(newAnim); }
+         
         }
 
         RecalculateStats();
