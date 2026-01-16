@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::UnitLevelSO
   formName: 
   visualPrefab: {fileID: 4401674875841445234, guid: fc0cad0c532cba246a00ce242a3ec7f1, type: 3}
-  evolveCost: 75
+  evolveCost: 125
   baseDamage: 20
   baseHealth: 160
   baseSpeed: 1

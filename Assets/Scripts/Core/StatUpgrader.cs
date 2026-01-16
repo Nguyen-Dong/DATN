@@ -32,6 +32,11 @@ public class StatUpgrader : MonoBehaviour
         }
     }
 
+    public int GetStatUpgradeCost()
+    {
+        return statUpgradeCost;
+    }
+
     public bool TryEvole()
     {
         if (CurrentFormIndex >= forms.Count - 1) return false;
@@ -130,7 +135,7 @@ public class StatUpgrader : MonoBehaviour
 
     public int GetNextEvolveCost()
     {
-        if (CurrentFormIndex >= forms.Count - 1) return 0;
+        if (forms == null || CurrentFormIndex >= forms.Count - 1) return 0;
         return forms[CurrentFormIndex + 1].evolveCost;
     }
 
