@@ -17,7 +17,7 @@ MonoBehaviour:
   evolveCost: 0
   baseDamage: 5
   baseHealth: 100
-  baseSpeed: 1
+  baseSpeed: 2
   damagePerLevel: 2
   healthPerLevel: 5
   speedPerLevel: 0.2

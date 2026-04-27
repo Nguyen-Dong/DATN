@@ -3,7 +3,7 @@ using UnityEngine;
 public class PlayerMovement : EntityMovement
 {
     protected Player m_player;
-    public int directionMove = 1;
+    public float directionMove = 1f;
     [SerializeField] protected Animator anim;
     [SerializeField] protected GameObject pointChangeDirCheck;
 

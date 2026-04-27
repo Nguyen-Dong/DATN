@@ -33,7 +33,7 @@ public class SwordEnemy : Enemy
     {
         if(!dead)
         {
-            CurrencyManager.Instance.AddGold(goldDrop);
+            GameManager.Instance.AddGold(goldDrop);
         }
         base.EntityDie();
         attack.animator.SetInteger("State", 7);

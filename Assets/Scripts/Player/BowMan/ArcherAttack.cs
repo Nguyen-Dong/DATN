@@ -17,7 +17,7 @@ public class ArcherAttack : PlayerAttack
 
     [SerializeField] private float detectRange = 10f;
 
-    [HideInInspector] public bool attackeing;
+    [HideInInspector] public bool attacking;
 
     private void Start()
     {
@@ -31,6 +31,7 @@ public class ArcherAttack : PlayerAttack
         bool enemyDetected = DetectEnemy();
 
         // Cập nhật Animator (Trạng thái Ready bắn cung)
+        animator.SetBool("Action", attacking);
         animator.SetBool("Ready", enemyDetected);
         animator.SetInteger("WeaponType", 3);
         if (enemyDetected)
@@ -44,7 +45,7 @@ public class ArcherAttack : PlayerAttack
     private void Attack()
     {
         attacked = true;
-        attackeing = true;
+        attacking = true;
 
         //animation ban
         animator.SetTrigger("SimpleBowShot");

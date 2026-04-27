@@ -860,6 +860,8 @@ GameObject:
   - component: {fileID: 6578615471166916478}
   - component: {fileID: 3484439124535001950}
   - component: {fileID: 2869158445024108308}
+  - component: {fileID: 882749664017698288}
+  - component: {fileID: 4743460780217606501}
   m_Layer: 7
   m_Name: SwordLv1
   m_TagString: Untagged
@@ -1256,8 +1258,39 @@ MonoBehaviour:
   dead: 0
   lieDown: 0
   attack: {fileID: 0}
+  animationEvent: {fileID: 0}
   movement: {fileID: 0}
-  takeDamgeParticles: {fileID: 0}
+--- !u!114 &882749664017698288
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 929906232887089001}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2de874f976f7f1641b1c7aca76c5c6d1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::UnitUpgrader
+  forms:
+  - {fileID: 11400000, guid: e44d1f7f08a99b24b96a50a9d3ad42b6, type: 2}
+  - {fileID: 11400000, guid: 6889c6ec8dec92e42ae41c554c0044a6, type: 2}
+  - {fileID: 11400000, guid: 8b4dd750e51eef84f8c2638d14e0f628, type: 2}
+  - {fileID: 11400000, guid: a856df5ac58829240b9e51ff64c24a7a, type: 2}
+  statUpgradeCost: 50
+  maxStatLevel: 5
+--- !u!114 &4743460780217606501
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 929906232887089001}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: eb79679bc134eff4fabe2c76f461e8b4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::UnitClick
 --- !u!1 &982150461769182005
 GameObject:
   m_ObjectHideFlags: 0
