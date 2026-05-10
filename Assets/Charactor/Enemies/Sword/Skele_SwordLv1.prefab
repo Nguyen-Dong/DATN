@@ -394,13 +394,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::SwordEnemy
   rb: {fileID: 0}
   createdDust: 0
-  maxHealth: 100
+  maxHealth: 150
   currentHealth: 0
   dead: 0
   lieDown: 0
   attack: {fileID: 0}
+  animationEvent: {fileID: 0}
   movement: {fileID: 0}
-  takeDamgeParticles: {fileID: 0}
+  goldDrop: 35
 --- !u!1 &22156323912675977
 GameObject:
   m_ObjectHideFlags: 0
@@ -5236,7 +5237,6 @@ ParticleSystemRenderer:
   m_RendererPriority: 0
   m_Materials:
   - {fileID: 2100000, guid: 9db51d32a74d40a7b50e0aa79daf4c9d, type: 2}
-  - {fileID: 0}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -10110,7 +10110,6 @@ ParticleSystemRenderer:
   m_RendererPriority: 0
   m_Materials:
   - {fileID: 2100000, guid: 15bd635ad059449e802db1441fe64d68, type: 2}
-  - {fileID: 0}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -22631,7 +22630,6 @@ ParticleSystemRenderer:
   m_RendererPriority: 0
   m_Materials:
   - {fileID: 2100000, guid: 9db51d32a74d40a7b50e0aa79daf4c9d, type: 2}
-  - {fileID: 0}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -27955,7 +27953,6 @@ ParticleSystemRenderer:
   m_RendererPriority: 0
   m_Materials:
   - {fileID: 2100000, guid: 15bd635ad059449e802db1441fe64d68, type: 2}
-  - {fileID: 0}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0

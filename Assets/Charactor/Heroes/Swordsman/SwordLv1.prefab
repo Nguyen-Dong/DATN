@@ -1970,6 +1970,9 @@ MonoBehaviour:
   directionMove: 1
   anim: {fileID: 2311540291176230195}
   pointChangeDirCheck: {fileID: 0}
+  spreadRadius: 1.2
+  spreadSpacing: 0.6
+  maxVisualOffset: 1.2
 --- !u!1 &1746092948926526244
 GameObject:
   m_ObjectHideFlags: 0
