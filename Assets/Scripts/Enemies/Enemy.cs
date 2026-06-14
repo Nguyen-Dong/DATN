@@ -22,6 +22,18 @@ public class Enemy : Entity
         else return true;
     }
 
+    public override void EntityDie()
+    {
+        if (!dead)
+        {
+            if (EnemyAI.Instance != null)
+            {
+                EnemyAI.Instance.RegisterEnemyDeath();
+            }
+        }
+        base.EntityDie();
+    }
+
 
 
     //[HideInInspector] public EnemyMovement movement;

@@ -35,6 +35,11 @@ public class SwordEnemy : Enemy
         {
             GameManager.Instance.AddGold(goldDrop);
         }
+        // Hủy đăng ký khỏi formation manager khi chết
+        if (UnitFormationManager.Instance != null)
+        {
+            UnitFormationManager.Instance.UnregisterEnemyUnit(transform);
+        }
         base.EntityDie();
         attack.animator.SetInteger("State", 7);
         float timetoDestroy = attack.animator.GetCurrentAnimatorStateInfo(0).length;

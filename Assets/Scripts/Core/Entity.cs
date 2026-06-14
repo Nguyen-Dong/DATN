@@ -15,6 +15,22 @@ public abstract class Entity : MonoBehaviour
     {
         currentHealth = maxHealth;
         rb = GetComponent<Rigidbody2D>();
+        if (rb != null)
+        {
+            rb.gravityScale = 0f; // Tắt trọng lực để tránh sụt lún cơ học gây rung giật khi Lerp đội hình Y
+
+            // Tự động gán UnitSeparation cho các thực thể di động thuộc phe Player (layer 7) hoặc Enemy (layer 6) nếu chưa có
+            if (GetComponent<UnitSeparation>() == null)
+            {
+                if (gameObject.layer == 6 || gameObject.layer == 7)
+                {
+                    UnitSeparation sep = gameObject.AddComponent<UnitSeparation>();
+                    // Thiết lập LayerMask cho cùng phe
+                    LayerMask mask = 1 << gameObject.layer;
+                    sep.Initialize(mask);
+                }
+            }
+        }
     }
     public virtual void TakeDamage(float damage)
     {
@@ -38,11 +54,20 @@ public abstract class Entity : MonoBehaviour
     {
         currentHealth = maxHealth;
     }
+    public float GetCurrentHealth() => currentHealth;
+    public float GetMaxHealth() => maxHealth;
+
     public virtual void EntityDie()
     {
         dead = true;
-        gameObject.GetComponent<Collider2D>().enabled = false;
-        rb.bodyType = RigidbodyType2D.Static;
+        if (gameObject.GetComponent<Collider2D>() != null)
+        {
+            gameObject.GetComponent<Collider2D>().enabled = false;
+        }
+        if (rb != null)
+        {
+            rb.bodyType = RigidbodyType2D.Static;
+        }
     }
 
 }

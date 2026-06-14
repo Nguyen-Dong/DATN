@@ -24,7 +24,7 @@ public class EnemyMovement : EntityMovement
         //if (direction > 0)
         //    transform.parent.localScale = new Vector3(1, 1, 1);
         if (direction < 0)
-            transform.parent.localScale = new Vector3(-1, 1, 1);
+            transform.parent.localScale = new Vector3(-0.55f, 0.55f, 0.55f);
         Debug.Log("Move Enemy");
         Vector2 velocity = transform.parent.GetComponent<Rigidbody2D>().linearVelocity;
         transform.parent.GetComponent<Rigidbody2D>().linearVelocity = new Vector2(direction * speed, velocity.y);

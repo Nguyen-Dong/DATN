@@ -26,4 +26,15 @@ public class Archer: Player
         if (dead) return;
         base.TakeDamage(damage);
     }
+
+    public override void EntityDie()
+    {
+        // Hủy đăng ký khỏi formation manager khi chết
+        if (UnitFormationManager.Instance != null)
+        {
+            UnitFormationManager.Instance.UnregisterPlayerUnit(transform);
+        }
+        base.EntityDie();
+        Destroy(gameObject, 1f);
+    }
 }

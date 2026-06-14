@@ -1,9 +1,11 @@
-﻿using UnityEngine;
+using UnityEngine;
 
 public class EnemySpawner : MonoBehaviour
 {
     [Header("Enemy Spawn")]
     [SerializeField] private GameObject enemyPrefab;
+
+    public GameObject GetEnemyPrefab() => enemyPrefab;
 
     [Header("Time Spawn")]
     [SerializeField] private float spawnInterval = 5f;

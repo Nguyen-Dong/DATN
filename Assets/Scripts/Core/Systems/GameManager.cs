@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+using UnityEngine;
 using TMPro;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
@@ -11,7 +11,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] public int currentGold = 200;
     [SerializeField] TextMeshProUGUI goldText;
     [SerializeField] GameObject PlayerPrefab;
-    [SerializeField] Transform spawnPoint;
+    [SerializeField] public Transform spawnPoint;
     [SerializeField] Button buySwordManBtn;
 
     [Header("Pause")]
@@ -33,6 +33,10 @@ public class GameManager : MonoBehaviour
     }
     private void Start()
     {
+        // Bỏ qua va chạm vật lý trực tiếp giữa các đơn vị cùng phe để di chuyển mượt mà không rung lắc cơ học
+        Physics2D.IgnoreLayerCollision(6, 6, true); // Enemy vs Enemy
+        Physics2D.IgnoreLayerCollision(7, 7, true); // Player vs Player
+
         UpdateGoldUI();
         buySwordManBtn.onClick.AddListener(BuySwordMan);
 

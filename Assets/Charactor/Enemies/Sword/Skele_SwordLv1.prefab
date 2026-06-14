@@ -15,6 +15,7 @@ GameObject:
   - component: {fileID: 3955318333958306414}
   - component: {fileID: 3884849227012380612}
   - component: {fileID: 1160959488523221287}
+  - component: {fileID: 5309407808486437646}
   m_Layer: 6
   m_Name: Skele_SwordLv1
   m_TagString: Untagged
@@ -402,6 +403,24 @@ MonoBehaviour:
   animationEvent: {fileID: 0}
   movement: {fileID: 0}
   goldDrop: 35
+--- !u!114 &5309407808486437646
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 940397910599825}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7f62da3299b25114c94d0796fea67469, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::UnitSeparation
+  detectionRadius: 1.2
+  minDistance: 0.6
+  separationForce: 5
+  teamLayer:
+    serializedVersion: 2
+    m_Bits: 64
 --- !u!1 &22156323912675977
 GameObject:
   m_ObjectHideFlags: 0

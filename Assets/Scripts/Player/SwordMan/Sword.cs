@@ -33,6 +33,11 @@ public class Sword : Player
 
     public override void EntityDie()
     {
+        // Hủy đăng ký khỏi formation manager khi chết
+        if (UnitFormationManager.Instance != null)
+        {
+            UnitFormationManager.Instance.UnregisterPlayerUnit(transform);
+        }
         base.EntityDie();
         attack.animator.SetInteger("State", 7);
         float timetoDestroy = attack.animator.GetCurrentAnimatorStateInfo(0).length;

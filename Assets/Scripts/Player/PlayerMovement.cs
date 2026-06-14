@@ -21,14 +21,19 @@ public class PlayerMovement : EntityMovement
 
     public override void Move(float direction)
     {
-        if (direction > 0)
-            transform.parent.localScale = new Vector3(1, 1, 1);
-        //if (direction < 0)
-        //    transform.parent.localScale = new Vector3(-1, 1, 1);
-        Debug.Log("Move Player");
-        Vector2 velocity = transform.parent.GetComponent<Rigidbody2D>().linearVelocity;
-        transform.parent.GetComponent<Rigidbody2D>().linearVelocity = new Vector2(direction * speed, velocity.y);
-        anim.SetInteger("State", 2);
+        Rigidbody2D rb = transform.parent.GetComponent<Rigidbody2D>();
+
+        if (Mathf.Abs(direction) < 0.01f)
+        {
+            // Dừng lại
+            rb.linearVelocity = new Vector2(0f, rb.linearVelocity.y);
+            if (anim != null) anim.SetInteger("State", 0);
+            return;
+        }
+
+        // Di chuyển
+        rb.linearVelocity = new Vector2(direction * speed, rb.linearVelocity.y);
+        if (anim != null) anim.SetInteger("State", 2);
     }
     public override void Jump()
     {

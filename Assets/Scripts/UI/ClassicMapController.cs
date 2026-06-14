@@ -28,6 +28,9 @@ public class ClassicMapController : MonoBehaviour
     }
     public void OpenMap()
     {
+        // Reload in case it was updated after winning a game
+        highestUnlockLevel = PlayerPrefs.GetInt("HighestUnlockLevel", 0);
+
         mapPanel.SetActive(true);
         modeSelectionPanel.SetActive(false);
         levelInfoPopup.SetActive(false);
@@ -74,6 +77,11 @@ public class ClassicMapController : MonoBehaviour
     private void LoadSelectedLevelScene()
     {
         Debug.Log("Dang tai du dieu man choi " + currentSelectedLevel);
+        
+        // Lưu lại level hiện tại để GameResult biết đang chơi level nào
+        PlayerPrefs.SetInt("CurrentPlayingLevel", currentSelectedLevel);
+        PlayerPrefs.Save();
+
         if (currentSelectedLevel == 0)
         {
             SceneManager.LoadScene("Classic_map1");
