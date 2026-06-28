@@ -6532,7 +6532,7 @@ MonoBehaviour:
   maxHealth: 150
   currentHealth: 0
   dead: 0
-  defense: 0
+  defense: 3
   unitScale: 0.55
   spawnJitterX: 0.2
   spawnJitterY: 0.4
