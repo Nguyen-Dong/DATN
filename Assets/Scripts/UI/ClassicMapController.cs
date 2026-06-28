@@ -16,6 +16,10 @@ public class ClassicMapController : MonoBehaviour
 
     [Header("Checkpoint")]
     [SerializeField] public Button[] levelButtons;
+    [Tooltip("Tên scene từng màn (index khớp levelButtons). Vd [0]=Classic_map1, [1]=Classic_map2...")]
+    [SerializeField] private string[] levelScenes;
+    [Tooltip("Tên hiển thị từng màn (tùy chọn, index khớp levelButtons)")]
+    [SerializeField] private string[] levelNames;
     [SerializeField] private int currentSelectedLevel = -1;
     [SerializeField] private int highestUnlockLevel = 0;
 
@@ -65,30 +69,27 @@ public class ClassicMapController : MonoBehaviour
     {
         currentSelectedLevel = levelIndex;
         levelInfoPopup.SetActive(true);
-        if(levelIndex == 0)
-        {             
-            levelNameText.text = "MAM HUONG DAN";
-        }
+
+        if (levelNames != null && levelIndex < levelNames.Length && !string.IsNullOrEmpty(levelNames[levelIndex]))
+            levelNameText.text = levelNames[levelIndex];
         else
-        {
-            levelNameText.text = "MAN CHOI" + levelIndex;
-        } 
+            levelNameText.text = levelIndex == 0 ? "MAM HUONG DAN" : "MAN CHOI" + levelIndex;
     }
     private void LoadSelectedLevelScene()
     {
-        Debug.Log("Dang tai du dieu man choi " + currentSelectedLevel);
-        
         // Lưu lại level hiện tại để GameResult biết đang chơi level nào
         PlayerPrefs.SetInt("CurrentPlayingLevel", currentSelectedLevel);
         PlayerPrefs.Save();
 
-        if (currentSelectedLevel == 0)
+        if (currentSelectedLevel >= 0 && levelScenes != null
+            && currentSelectedLevel < levelScenes.Length
+            && !string.IsNullOrEmpty(levelScenes[currentSelectedLevel]))
         {
-            SceneManager.LoadScene("Classic_map1");
+            SceneManager.LoadScene(levelScenes[currentSelectedLevel]);
         }
         else
         {
-            //SceneManager.LoadScene("ClassicLevel" + currentSelectedLevel);
+            Debug.LogWarning($"ClassicMapController: chưa gán scene cho màn {currentSelectedLevel} (kiểm tra mảng 'Level Scenes').");
         }
     }
 }

@@ -35,6 +35,15 @@ public class Archer: Player
             UnitFormationManager.Instance.UnregisterPlayerUnit(transform);
         }
         base.EntityDie();
-        Destroy(gameObject, 1f);
+
+        // Bật animation chết (State = 7) rồi hủy sau khi anim chạy xong (giống lính kiếm)
+        float timeToDestroy = 1f;
+        if (attack != null && attack.animator != null)
+        {
+            attack.animator.SetInteger("State", 7);
+            float len = attack.animator.GetCurrentAnimatorStateInfo(0).length;
+            if (len > 0f) timeToDestroy = len;
+        }
+        Destroy(gameObject, timeToDestroy);
     }
 }

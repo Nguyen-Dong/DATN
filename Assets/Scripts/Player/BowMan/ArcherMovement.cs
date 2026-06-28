@@ -1,243 +1,143 @@
 using UnityEngine;
 
-public class ArcherMovement : PlayerMovement
+/// <summary>
+/// Lính cung Player (tầm xa). Cung cấp ngữ cảnh cho <see cref="UnitFSM"/>.
+/// Riêng "lính cung hỗ trợ rút lui" (tag RetreatArcher) vẫn dùng hành vi đặc biệt riêng.
+/// </summary>
+public class ArcherMovement : PlayerMovement, IUnitBrain
 {
     protected Archer archer;
-    protected int oldDirection;
 
     private Transform defendPoint;
     private Transform retreatPoint;
-
-    [Header("Formation")]
-    [Tooltip("Tốc độ lerp về vị trí formation Y")]
-    [SerializeField] private float formationLerpSpeed = 8f;
 
     [Header("Retreat")]
     [Tooltip("Khoảng cách phía sau màn hình để rút lui")]
     [SerializeField] private float retreatOffsetBehindCamera = 3f;
 
-    // Vị trí Y gốc khi unit được spawn (mặt đất)
-    private float baseY;
-
-    /// <summary>
-    /// Đánh dấu đây là lính cung hỗ trợ rút lui (được spawn khi bấm Retreat).
-    /// </summary>
+    /// <summary>Đánh dấu đây là lính cung hỗ trợ rút lui (spawn khi bấm Retreat).</summary>
     [HideInInspector] public bool isRetreatArcher = false;
 
-    // Vị trí đích mà lính cung retreat sẽ đứng (ArcherStandPoint)
-    private Transform archerStandPoint;
-
+    // Điểm đánh dấu cung thủ yểm trợ sẽ di chuyển tới (do GameCommander gán thẳng khi spawn)
+    private Transform retreatStandPoint;
     // Vị trí spawn ban đầu (để biết rút về đâu)
     private Vector3 initialSpawnPos;
+    private bool _dbgLogged = false;
+
+    private UnitFSM fsm;
+
+    /// <summary>GameCommander gọi để gán điểm đứng yểm trợ cho cung thủ retreat.</summary>
+    public void SetRetreatStandPoint(Transform point) => retreatStandPoint = point;
 
     protected void Start()
     {
         Load();
         archer = GetComponentInParent<Archer>();
 
-        // Lưu vị trí Y spawn làm mốc cho formation
-        baseY = transform.parent.position.y;
-
-        // Lưu vị trí spawn ban đầu
         initialSpawnPos = transform.parent.position;
 
-        // Kiểm tra nếu parent có tag RetreatArcher
         if (transform.parent.CompareTag("RetreatArcher"))
-        {
             isRetreatArcher = true;
-        }
 
-        GameObject dp = GameObject.Find("DefendPoint");
-        if (dp != null)
-        {
-            defendPoint = dp.transform;
-        }
+        // Cung thủ có điểm tập hợp phòng thủ RIÊNG (thường lùi sau hàng cận chiến).
+        // Tìm "ArcherDefendPoint" trước; nếu chưa tạo thì dùng chung "DefendPoint".
+        GameObject dp = GameObject.Find("ArcherDefendPoint");
+        if (dp == null) dp = GameObject.Find("DefendPoint");
+        if (dp != null) defendPoint = dp.transform;
 
         GameObject rp = GameObject.Find("RetreatPoint");
-        if (rp != null)
-        {
-            retreatPoint = rp.transform;
-        }
+        if (rp != null) retreatPoint = rp.transform;
 
-        // Tìm ArcherStandPoint cho lính cung retreat
-        GameObject asp = GameObject.Find("ArcherStandPoint");
-        if (asp != null)
-        {
-            archerStandPoint = asp.transform;
-        }
-
-        // Đăng ký unit vào formation manager (chỉ lính cung thường)
+        // Chỉ lính cung thường mới đăng ký đội hình
         if (!isRetreatArcher && UnitFormationManager.Instance != null)
-        {
             UnitFormationManager.Instance.RegisterPlayerUnit(transform.parent);
-        }
+
+        fsm = new UnitFSM(this);
     }
 
     void Update()
     {
         if (!archer.CanMove()) return;
 
-        // Lính cung hỗ trợ rút lui: hành vi riêng
         if (isRetreatArcher)
         {
             HandleRetreatArcherBehavior();
             return;
         }
 
-        // Lính cung thông thường: theo chế độ chỉ huy
-        if (GameCommander.currentState == GameCommander.CommandState.Attack)
-        {
-            HandleAttackState();
-        }
-        else if (GameCommander.currentState == GameCommander.CommandState.Defend)
-        {
-            HandleDefendState();
-        }
-        else if (GameCommander.currentState == GameCommander.CommandState.Retreat)
-        {
-            HandleRetreatState();
-        }
+        if (fsm != null) fsm.Tick();
     }
 
-    /// <summary>
-    /// Chế độ Tấn công: di chuyển lên trước, khi phát hiện địch bằng raycast thì dừng lại bắn.
-    /// ArcherAttack sẽ tự handle việc dừng và bắn khi isEnemyInRange == true.
-    /// </summary>
-    private void HandleAttackState()
+    // ===== IUnitBrain =====
+
+    public Transform Body => transform.parent;
+    public bool IsPlayer => true;
+    public bool IsAlive => !archer.dead;
+    public bool CanAct => archer.CanMove();
+    public UnitCommand Command => MapCommand(GameCommander.currentState);
+    public bool TargetInVision => archer.attack != null && archer.attack.isEnemyInRange;
+    public bool TargetInAttackRange => archer.attack != null && archer.attack.isEnemyInRange;
+    public bool EngageInDefend => false; // đứng phòng thủ tại chỗ, vẫn bắn nếu địch vào tầm (ArcherAttack tự xử lý)
+    public bool RangedEngage => true;    // tầm xa: đứng yên bắn, không dồn về tuyến cận chiến
+    public bool HasDefendPost => defendPoint != null;
+    public bool UsesDefendFormation => false;
+    public float DefendAnchorX => defendPoint != null ? defendPoint.position.x : transform.parent.position.x;
+    public float RetreatTargetX => ComputeRetreatX();
+    public int ForwardSign => 1;
+
+    public void MoveStep(float dir)
     {
-        // Nếu ArcherAttack đã detect enemy -> dừng, không di chuyển
-        // ArcherAttack.Update() sẽ tự xử lý dừng + bắn
-        if (archer.attack.isEnemyInRange)
-        {
-            // Đứng yên, quay mặt về phía trước
-            directionMove = 0f;
-            Flip(1);
-            // Không set animation ở đây - ArcherAttack sẽ quản lý
-            ApplyFormationOffset();
-            return;
-        }
-
-        // Không phát hiện địch -> di chuyển về phía trước
-        directionMove = 1f;
-        Flip(1);
-        Move(directionMove);
-        ApplyFormationOffset();
+        Flip(dir >= 0f ? 1 : -1);
+        Move(dir);
     }
 
-    /// <summary>
-    /// Chế độ Phòng thủ: tập trung tại DefendPoint và đứng chờ lệnh.
-    /// Nếu phát hiện địch trong tầm thì vẫn bắn.
-    /// </summary>
-    private void HandleDefendState()
+    public void FaceForward() => Flip(1);
+
+    // Tầm xa: không truy đuổi, không cần quay theo mục tiêu (đứng bắn về phía trước)
+    public void FaceTarget() => Flip(1);
+    public void MoveTowardTarget() => StopAndIdle();
+
+    public void StopAndIdle()
     {
-        if (defendPoint != null)
-        {
-            float distToDefend = transform.parent.position.x - defendPoint.position.x;
-
-            if (Mathf.Abs(distToDefend) > 0.3f)
-            {
-                // Di chuyển về phía DefendPoint
-                directionMove = distToDefend > 0 ? -1f : 1f;
-                Flip((int)directionMove);
-                Move(directionMove);
-                ApplyFormationOffset();
-                return;
-            }
-        }
-
-        // Đã đến DefendPoint hoặc không có DefendPoint
-        // Đứng yên chờ lệnh, nhưng vẫn bắn nếu thấy địch
-        directionMove = 0f;
-        Flip(1); // Quay mặt về phía trước
-        transform.parent.GetComponent<Rigidbody2D>().linearVelocity = Vector2.zero;
-
-        if (archer.attack.isEnemyInRange)
-        {
-            // Phát hiện địch -> ArcherAttack tự xử lý bắn
-            ApplyFormationOffset();
-            return;
-        }
-
-        if (anim != null)
-        {
-            anim.SetInteger("State", 0);
-        }
-        ApplyFormationOffset();
+        Rigidbody2D rb = transform.parent.GetComponent<Rigidbody2D>();
+        if (rb != null) rb.linearVelocity = Vector2.zero;
+        // LUÔN đưa locomotion về idle khi đứng yên. Việc bắn cung do ArcherAttack quản bằng param riêng
+        // (Ready/WeaponType/SimpleBowShot) nên không xung đột; trước đây bỏ qua khiến State kẹt ở 2 -> chạy tại chỗ.
+        if (anim != null) anim.SetInteger("State", 0);
     }
 
-    /// <summary>
-    /// Chế độ Rút lui: lính cung thường cũng rút ra phía sau màn hình.
-    /// </summary>
-    private void HandleRetreatState()
-    {
-        float retreatTargetX;
-
-        if (retreatPoint != null)
-        {
-            retreatTargetX = retreatPoint.position.x;
-        }
-        else
-        {
-            Camera cam = Camera.main;
-            if (cam != null)
-            {
-                float camLeftEdge = cam.transform.position.x - cam.orthographicSize * cam.aspect;
-                retreatTargetX = camLeftEdge - retreatOffsetBehindCamera;
-            }
-            else
-            {
-                retreatTargetX = -15f;
-            }
-        }
-
-        float distToRetreat = transform.parent.position.x - retreatTargetX;
-
-        if (distToRetreat > 0.3f)
-        {
-            directionMove = -1f;
-            Flip(-1);
-            Move(directionMove);
-        }
-        else
-        {
-            directionMove = 0f;
-            transform.parent.GetComponent<Rigidbody2D>().linearVelocity = Vector2.zero;
-            if (anim != null)
-            {
-                anim.SetInteger("State", 0);
-            }
-        }
-    }
+    // ===== Hành vi lính cung hỗ trợ rút lui (giữ nguyên) =====
 
     /// <summary>
-    /// Hành vi lính cung hỗ trợ rút lui:
-    /// - Khi ở chế độ Retreat: di chuyển từ spawnPoint đến ArcherStandPoint, rồi đứng bắn.
-    /// - Khi chuyển sang chế độ khác (Attack/Defend): rút về phía sau (spawnPoint) và đứng chờ.
-    /// - Khi bấm Retreat lần nữa: lại tiến ra ArcherStandPoint.
-    /// KHÔNG tự hủy - lính cung này tồn tại vĩnh viễn.
+    /// - Khi Retreat: đi từ spawnPoint ra ArcherStandPoint rồi đứng bắn.
+    /// - Khi chuyển sang Attack/Defend: rút về spawnPoint chờ.
+    /// - Bấm Retreat lại: tiến ra ArcherStandPoint. KHÔNG tự hủy.
     /// </summary>
     private void HandleRetreatArcherBehavior()
     {
+        if (!_dbgLogged)
+        {
+            _dbgLogged = true;
+            Debug.Log($"<color=#00FF00>[RetreatArcher] standPoint={(retreatStandPoint != null ? "OK @x=" + retreatStandPoint.position.x.ToString("F2") : "NULL")} " +
+                      $"| myX={transform.parent.position.x:F2} | speed={speed} | attack={(archer != null && archer.attack != null ? "OK" : "NULL")}</color>");
+        }
+
         if (GameCommander.currentState == GameCommander.CommandState.Retreat)
         {
-            // === ĐANG Ở CHẾ ĐỘ RÚT LUI ===
-            // Di chuyển đến ArcherStandPoint để tấn công yểm trợ
-            float targetX;
-            if (archerStandPoint != null)
+            // Chưa gán điểm đứng -> đứng yên tại chỗ
+            if (retreatStandPoint == null)
             {
-                targetX = archerStandPoint.position.x;
-            }
-            else
-            {
-                // Fallback: tiến lên phía trước một khoảng
-                targetX = initialSpawnPos.x + 5f;
+                archer.attack.isMovingToPosition = false;
+                transform.parent.GetComponent<Rigidbody2D>().linearVelocity = Vector2.zero;
+                if (anim != null) anim.SetInteger("State", 0);
+                return;
             }
 
+            float targetX = retreatStandPoint.position.x;
             float dist = targetX - transform.parent.position.x;
 
             if (Mathf.Abs(dist) > 0.3f)
             {
-                // Chưa đến vị trí -> đang di chuyển, báo cho ArcherAttack không dừng
                 archer.attack.isMovingToPosition = true;
                 directionMove = dist > 0 ? 1f : -1f;
                 Flip((int)directionMove);
@@ -245,88 +145,64 @@ public class ArcherMovement : PlayerMovement
             }
             else
             {
-                // Đã đến ArcherStandPoint -> cho phép ArcherAttack dừng và bắn
-                archer.attack.isMovingToPosition = false;
-                directionMove = 0f;
-                Flip(1); // Quay mặt về phía trước
-                transform.parent.GetComponent<Rigidbody2D>().linearVelocity = Vector2.zero;
-
-                if (archer.attack.isEnemyInRange)
-                {
-                    // ArcherAttack tự handle bắn
-                    return;
-                }
-
-                if (anim != null)
-                {
-                    anim.SetInteger("State", 0);
-                }
-            }
-        }
-        else
-        {
-            // === KHÔNG Ở CHẾ ĐỘ RÚT LUI (Attack/Defend) ===
-            // Rút về phía sau (về spawnPoint ban đầu)
-            float dist = transform.parent.position.x - initialSpawnPos.x;
-
-            if (dist > 0.3f)
-            {
-                // Chưa về đến spawnPoint -> đang di chuyển
-                archer.attack.isMovingToPosition = true;
-                directionMove = -1f;
-                Flip(-1);
-                Move(directionMove);
-            }
-            else
-            {
-                // Đã về spawnPoint -> đứng yên chờ lệnh Retreat tiếp
                 archer.attack.isMovingToPosition = false;
                 directionMove = 0f;
                 Flip(1);
                 transform.parent.GetComponent<Rigidbody2D>().linearVelocity = Vector2.zero;
-                if (anim != null)
-                {
-                    anim.SetInteger("State", 0);
-                }
+                if (anim != null) anim.SetInteger("State", 0); // luôn về idle khi đã đứng tại chỗ
             }
+        }
+        else
+        {
+            // Quay đầu, di chuyển về spawn (đối xứng - đi đúng hướng dù spawn ở bên nào)
+            float dist = initialSpawnPos.x - transform.parent.position.x;
+
+            if (Mathf.Abs(dist) > 0.3f)
+            {
+                archer.attack.isMovingToPosition = true;
+                directionMove = dist > 0 ? 1f : -1f;
+                Flip((int)directionMove);
+                Move(directionMove);
+            }
+            else
+            {
+                archer.attack.isMovingToPosition = false;
+                directionMove = 0f;
+                Flip(1);
+                transform.parent.GetComponent<Rigidbody2D>().linearVelocity = Vector2.zero;
+                if (anim != null) anim.SetInteger("State", 0);
+            }
+        }
+    }
+
+    // ===== Helpers =====
+
+    private float ComputeRetreatX()
+    {
+        if (retreatPoint != null) return retreatPoint.position.x;
+        Camera cam = Camera.main;
+        if (cam != null)
+            return cam.transform.position.x - cam.orthographicSize * cam.aspect - retreatOffsetBehindCamera;
+        return -15f;
+    }
+
+    private static UnitCommand MapCommand(GameCommander.CommandState s)
+    {
+        switch (s)
+        {
+            case GameCommander.CommandState.Attack: return UnitCommand.Attack;
+            case GameCommander.CommandState.Retreat: return UnitCommand.Retreat;
+            default: return UnitCommand.Defend;
         }
     }
 
     private void Flip(int dir)
     {
         if (dir == 0) return;
-        Transform parentTransform = transform.parent;
-        Vector3 currentScale = parentTransform.localScale;
-        currentScale.x = Mathf.Abs(currentScale.x) * dir;
-        parentTransform.localScale = currentScale;
+        Vector3 s = transform.parent.localScale;
+        s.x = Mathf.Abs(s.x) * dir;
+        transform.parent.localScale = s;
     }
 
-    /// <summary>
-    /// Lerp vị trí Y của unit về đúng slot formation.
-    /// </summary>
-    private void ApplyFormationOffset()
-    {
-        if (UnitFormationManager.Instance == null) return;
-        if (UnitFormationManager.Instance.GetPlayerUnitCount() <= 1) return;
-
-        Vector2 offset = UnitFormationManager.Instance.GetPlayerFormationOffset(transform.parent);
-        float targetY = baseY + offset.y;
-
-        // Lerp position Y về đúng vị trí slot
-        Vector3 pos = transform.parent.position;
-        pos.y = Mathf.Lerp(pos.y, targetY, Time.deltaTime * formationLerpSpeed);
-        transform.parent.position = pos;
-
-        // Zero vel.y để gravity không kéo unit khỏi vị trí formation
-        Rigidbody2D rb = transform.parent.GetComponent<Rigidbody2D>();
-        if (rb != null)
-        {
-            rb.linearVelocity = new Vector2(rb.linearVelocity.x, 0f);
-        }
-    }
-
-    public void SetAnimator(Animator a)
-    {
-        anim = a;
-    }
+    public void SetAnimator(Animator a) => anim = a;
 }

@@ -398,6 +398,10 @@ MonoBehaviour:
   maxHealth: 150
   currentHealth: 0
   dead: 0
+  defense: 0
+  unitScale: 0.55
+  spawnJitterX: 0.2
+  spawnJitterY: 0.4
   lieDown: 0
   attack: {fileID: 0}
   animationEvent: {fileID: 0}
@@ -415,12 +419,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7f62da3299b25114c94d0796fea67469, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::UnitSeparation
-  detectionRadius: 1.2
-  minDistance: 0.6
-  separationForce: 5
-  teamLayer:
-    serializedVersion: 2
-    m_Bits: 64
+  radius: 0.45
+  maxPushPerFrame: 0.05
 --- !u!1 &22156323912675977
 GameObject:
   m_ObjectHideFlags: 0
@@ -10231,6 +10231,7 @@ MonoBehaviour:
   directionMove: -1
   anim: {fileID: 4063952790369561935}
   pointChangeDirCheck: {fileID: 5386809111737715595}
+  visionRange: 2.5
 --- !u!1 &237143805492101070
 GameObject:
   m_ObjectHideFlags: 0
@@ -14959,7 +14960,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1dfb36ab038aee146ad7cc120fa81691, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SwordEnemyAttack
-  damage: 3
+  damage: 5
   coolDown: 1
   attacked: 0
   animator: {fileID: 4063952790369561935}
@@ -14967,6 +14968,7 @@ MonoBehaviour:
   - {fileID: 6400681000605599144}
   radius: 0.4
   attacking: 0
+  isPlayerInRange: 0
 --- !u!1 &5290793306541501532
 GameObject:
   m_ObjectHideFlags: 0

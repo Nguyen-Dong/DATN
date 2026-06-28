@@ -10,9 +10,20 @@ public class GameManager : MonoBehaviour
     [Header("Gold & Spawn")]
     [SerializeField] public int currentGold = 200;
     [SerializeField] TextMeshProUGUI goldText;
-    [SerializeField] GameObject PlayerPrefab;
     [SerializeField] public Transform spawnPoint;
     [SerializeField] Button buySwordManBtn;
+
+    [Header("Mua lính (data-driven)")]
+    [Tooltip("Định nghĩa lính kiếm. Nếu để trống sẽ dùng fallback PlayerPrefab bên dưới.")]
+    [SerializeField] UnitDefinition swordManDef;
+
+    [Header("Fallback (tương thích scene cũ)")]
+    [SerializeField] GameObject PlayerPrefab;
+    [SerializeField] int swordManGoldCost = 50;
+
+    [Header("Test")]
+    [Tooltip("Tốc độ game (để test cho nhanh). Đặt lại 1 khi release.")]
+    [SerializeField] private float gameSpeed = 2f;
 
     [Header("Pause")]
     public Button pauseBtn;
@@ -23,8 +34,13 @@ public class GameManager : MonoBehaviour
 
     private void Awake()
     {
+        if (Instance != null && Instance != this)
+        {
+            Destroy(gameObject);
+            return;
+        }
         Instance = this;
-        Time.timeScale = 1f; // Đảm bảo game không bị tạm dừng khi bắt đầu
+        Time.timeScale = gameSpeed; // Tốc độ game (test = 2x)
     }
     private void OnDestroy()
     {
@@ -34,11 +50,14 @@ public class GameManager : MonoBehaviour
     private void Start()
     {
         // Bỏ qua va chạm vật lý trực tiếp giữa các đơn vị cùng phe để di chuyển mượt mà không rung lắc cơ học
-        Physics2D.IgnoreLayerCollision(6, 6, true); // Enemy vs Enemy
-        Physics2D.IgnoreLayerCollision(7, 7, true); // Player vs Player
+        int enemyLayer = LayerMask.NameToLayer("Enemy");
+        int playerLayer = LayerMask.NameToLayer("Player");
+        if (enemyLayer >= 0) Physics2D.IgnoreLayerCollision(enemyLayer, enemyLayer, true);
+        if (playerLayer >= 0) Physics2D.IgnoreLayerCollision(playerLayer, playerLayer, true);
 
         UpdateGoldUI();
-        buySwordManBtn.onClick.AddListener(BuySwordMan);
+        // Nút mua lính cũ (1 loại) - giờ thay bằng TroopBuyButtons (3 nút). Để trống cũng được.
+        if (buySwordManBtn != null) buySwordManBtn.onClick.AddListener(BuySwordMan);
 
         pauseBtn.onClick.AddListener(PauseGame);
         resumeBtn.onClick.AddListener(ResumeGame);
@@ -71,11 +90,44 @@ public class GameManager : MonoBehaviour
     }
     private void BuySwordMan()
     {
-        if (TrySpendGold(50))
+        // Ưu tiên dùng dữ liệu data-driven nếu đã gán
+        if (swordManDef != null)
+        {
+            BuyUnit(swordManDef);
+            return;
+        }
+
+        // Fallback: tương thích scene cũ (chưa tạo UnitDefinition)
+        if (PlayerPrefab != null && TrySpendGold(swordManGoldCost))
         {
             Instantiate(PlayerPrefab, spawnPoint.position, Quaternion.identity);
-            Debug.Log("Đã mua 1 Lính Cận Chiến!");
+            Debug.Log("Đã mua 1 Lính Cận Chiến! (fallback)");
         }
+    }
+
+    /// <summary>
+    /// Mua một loại lính theo <see cref="UnitDefinition"/>: phải ĐÃ MỞ KHÓA (ở Cửa hàng) và ĐỦ VÀNG.
+    /// </summary>
+    public bool BuyUnit(UnitDefinition def)
+    {
+        if (def == null || def.prefab == null)
+        {
+            Debug.LogWarning("GameManager.BuyUnit: UnitDefinition hoặc prefab null.");
+            return false;
+        }
+
+        if (!TroopUnlockStore.IsUnlocked(def))
+        {
+            Debug.Log($"Lính '{def.displayName}' chưa mở khóa — hãy mua ở Cửa hàng.");
+            return false;
+        }
+
+        if (!TrySpendGold(def.goldCost))
+            return false;
+
+        Instantiate(def.prefab, spawnPoint.position, Quaternion.identity);
+        Debug.Log($"Đã mua lính: {def.displayName}");
+        return true;
     }
     private void PauseGame()
     {
@@ -85,7 +137,7 @@ public class GameManager : MonoBehaviour
     private void ResumeGame()
     {
         pauseMenuPanel.SetActive(false);
-        Time.timeScale = 1f;
+        Time.timeScale = gameSpeed;
     }
     private void QuitLevel()
     {

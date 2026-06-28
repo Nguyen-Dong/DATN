@@ -10,6 +10,8 @@ public class SwordAttack : PlayerAttack
 
     [SerializeField] protected float radius;
     [HideInInspector] public bool attacking;  // attacking == true => Can't move;
+    // Cờ phát hiện địch (cập nhật mỗi frame) để UnitFSM đọc lại, tránh OverlapCircle 2 lần/frame
+    [HideInInspector] public bool isEnemyInRange;
     private void Start()
     {
         sword = GetComponentInParent<Sword>();
@@ -19,6 +21,7 @@ public class SwordAttack : PlayerAttack
     {
         if (!sword.CanMove()) return;
         bool enemyDetected = DetectEnemy();
+        isEnemyInRange = enemyDetected;
         animator.SetBool("Ready", enemyDetected);
         if (enemyDetected)
         {

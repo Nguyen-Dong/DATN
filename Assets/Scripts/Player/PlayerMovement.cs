@@ -26,13 +26,13 @@ public class PlayerMovement : EntityMovement
         if (Mathf.Abs(direction) < 0.01f)
         {
             // Dừng lại
-            rb.linearVelocity = new Vector2(0f, rb.linearVelocity.y);
+            rb.linearVelocity = Vector2.zero;
             if (anim != null) anim.SetInteger("State", 0);
             return;
         }
 
-        // Di chuyển
-        rb.linearVelocity = new Vector2(direction * speed, rb.linearVelocity.y);
+        // Di chuyển NGANG (ép Y = 0 để không trôi chéo)
+        rb.linearVelocity = new Vector2(direction * speed, 0f);
         if (anim != null) anim.SetInteger("State", 2);
     }
     public override void Jump()

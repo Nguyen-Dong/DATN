@@ -860,9 +860,9 @@ GameObject:
   - component: {fileID: 6578615471166916478}
   - component: {fileID: 3484439124535001950}
   - component: {fileID: 2869158445024108308}
-  - component: {fileID: 882749664017698288}
-  - component: {fileID: 4743460780217606501}
   - component: {fileID: -5076842123682185700}
+  - component: {fileID: 4510150444650936518}
+  - component: {fileID: 8269742817561589089}
   m_Layer: 7
   m_Name: SwordLv1
   m_TagString: Untagged
@@ -1170,7 +1170,7 @@ MonoBehaviour:
   LegR: {fileID: 4731260833397772144}
   MeleeWeapon:
   - {fileID: 3424477729442312257}
-  - {fileID: 3424477729442312257}
+  - {fileID: 6417845495300967750}
   Shield: {fileID: 7705608600585513495}
   Bow:
   - {fileID: 5707850622951446053}
@@ -1257,41 +1257,14 @@ MonoBehaviour:
   maxHealth: 100
   currentHealth: 0
   dead: 0
+  defense: 0
+  unitScale: 0.55
+  spawnJitterX: 0.2
+  spawnJitterY: 0.4
   lieDown: 0
   attack: {fileID: 0}
   animationEvent: {fileID: 0}
   movement: {fileID: 0}
---- !u!114 &882749664017698288
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 929906232887089001}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2de874f976f7f1641b1c7aca76c5c6d1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::UnitUpgrader
-  forms:
-  - {fileID: 11400000, guid: e44d1f7f08a99b24b96a50a9d3ad42b6, type: 2}
-  - {fileID: 11400000, guid: 6889c6ec8dec92e42ae41c554c0044a6, type: 2}
-  - {fileID: 11400000, guid: 8b4dd750e51eef84f8c2638d14e0f628, type: 2}
-  - {fileID: 11400000, guid: a856df5ac58829240b9e51ff64c24a7a, type: 2}
-  statUpgradeCost: 50
-  maxStatLevel: 5
---- !u!114 &4743460780217606501
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 929906232887089001}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: eb79679bc134eff4fabe2c76f461e8b4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::UnitClick
 --- !u!114 &-5076842123682185700
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1304,12 +1277,34 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7f62da3299b25114c94d0796fea67469, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::UnitSeparation
-  detectionRadius: 1.2
-  minDistance: 0.6
-  separationForceX: 15
-  teamLayer:
-    serializedVersion: 2
-    m_Bits: 128
+  radius: 0.45
+  maxPushPerFrame: 0.05
+--- !u!114 &4510150444650936518
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 929906232887089001}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b9b08f059c4714d4eb772c258342da36, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::UnitType
+  type: 0
+--- !u!114 &8269742817561589089
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 929906232887089001}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c19cd1db7e415334396146a76b731083, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ArmoryApplier
+  upgradeData: {fileID: 11400000, guid: f90e7604f96d7bf488c91ec8ed21a5f3, type: 2}
 --- !u!1 &982150461769182005
 GameObject:
   m_ObjectHideFlags: 0
@@ -1635,6 +1630,7 @@ MonoBehaviour:
   - {fileID: 6931817715813643289}
   radius: 0.4
   attacking: 0
+  isEnemyInRange: 0
 --- !u!1 &1210836986513639493
 GameObject:
   m_ObjectHideFlags: 0
@@ -1989,8 +1985,8 @@ MonoBehaviour:
   directionMove: 1
   anim: {fileID: 2311540291176230195}
   pointChangeDirCheck: {fileID: 0}
-  formationHoldDistance: 1
-  formationLerpSpeed: 8
+  visionRange: 2.5
+  retreatOffsetBehindCamera: 3
 --- !u!1 &1746092948926526244
 GameObject:
   m_ObjectHideFlags: 0

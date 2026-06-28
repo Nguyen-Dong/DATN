@@ -23,7 +23,6 @@ namespace Assets.HeroEditor.Common.CharacterScripts
 		public Transform Shield;
 		public Transform[] Bow;
 		public Transform Firearm;
-
 		private Dictionary<Transform, Vector3> _positions = new Dictionary<Transform, Vector3>();
 
 		public void Awake()

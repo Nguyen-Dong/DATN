@@ -25,9 +25,8 @@ public class EnemyMovement : EntityMovement
         //    transform.parent.localScale = new Vector3(1, 1, 1);
         if (direction < 0)
             transform.parent.localScale = new Vector3(-0.55f, 0.55f, 0.55f);
-        Debug.Log("Move Enemy");
-        Vector2 velocity = transform.parent.GetComponent<Rigidbody2D>().linearVelocity;
-        transform.parent.GetComponent<Rigidbody2D>().linearVelocity = new Vector2(direction * speed, velocity.y);
+        // Ép Y = 0 để lính luôn đi NGANG, không bị trôi chéo do vận tốc Y dư
+        transform.parent.GetComponent<Rigidbody2D>().linearVelocity = new Vector2(direction * speed, 0f);
         anim.SetInteger("State", 2);
     }
     public override void Jump()

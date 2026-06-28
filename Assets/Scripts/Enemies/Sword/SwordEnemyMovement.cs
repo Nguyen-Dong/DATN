@@ -1,224 +1,142 @@
 using UnityEngine;
 
-public class SwordEnemyMovement : EnemyMovement
+/// <summary>
+/// Lính kiếm Enemy (cận chiến). Cung cấp ngữ cảnh phe Địch cho <see cref="UnitFSM"/>.
+/// Phát hiện player bằng TẦM NHÌN (vòng tròn quanh thân) -> chọn gần nhất -> áp sát rồi chém.
+/// Lệnh toàn quân lấy từ <see cref="EnemyAI"/>.
+/// </summary>
+public class SwordEnemyMovement : EnemyMovement, IUnitBrain
 {
     protected SwordEnemy sword_E;
-    protected int oldDirection;
-
-    [Header("Formation")]
-    [Tooltip("Tốc độ lerp về vị trí formation Y")]
-    [SerializeField] private float formationLerpSpeed = 8f;
-
-    // Vị trí Y gốc khi unit được spawn (mặt đất)
-    private float baseY;
 
     private Transform defendPoint;
     private Transform retreatPoint;
+    private EnemyBase enemyBase;
+
+    [Header("Tầm nhìn (giao tranh)")]
+    [Tooltip("Bán kính phát hiện player để lao vào đánh (nên ~3-4 lần tầm chém)")]
+    [SerializeField] private float visionRange = 2.5f;
+
+    private UnitFSM fsm;
+    private ContactFilter2D visionFilter;
+    private Transform currentTarget;
 
     protected void Start()
     {
         Load();
         sword_E = GetComponentInParent<SwordEnemy>();
+        enemyBase = FindFirstObjectByType<EnemyBase>();
 
-        // Lưu vị trí Y spawn làm mốc cho formation
-        baseY = transform.parent.position.y;
-
-        // Đăng ký enemy unit vào formation manager
         if (UnitFormationManager.Instance != null)
-        {
             UnitFormationManager.Instance.RegisterEnemyUnit(transform.parent);
-        }
 
-        // Tìm điểm phòng thủ & rút lui của Địch trong Scene
         GameObject dp = GameObject.Find("EnemyDefendPoint");
-        if (dp != null)
-        {
-            defendPoint = dp.transform;
-        }
+        if (dp != null) defendPoint = dp.transform;
 
         GameObject rp = GameObject.Find("EnemyRetreatPoint");
-        if (rp != null)
+        if (rp != null) retreatPoint = rp.transform;
+
+        // Tầm nhìn lọc theo phe ĐỊCH của enemy = Player
+        visionFilter = new ContactFilter2D
         {
-            retreatPoint = rp.transform;
-        }
+            useLayerMask = true,
+            useTriggers = false
+        };
+        visionFilter.SetLayerMask(LayerMask.GetMask("Player"));
+        visionRange *= Random.Range(0.9f, 1.1f);
+
+        fsm = new UnitFSM(this);
     }
 
     void Update()
     {
-        if (!sword_E.CanMove()) return;
-
-        // Lấy trạng thái chiến thuật hiện tại từ AI
-        EnemyAI.EnemyCommandState aiState = EnemyAI.EnemyCommandState.Defend;
-        if (EnemyAI.Instance != null)
-        {
-            aiState = EnemyAI.Instance.currentEnemyState;
-        }
-
-        // Nếu có người chơi ở tầm đánh và KHÔNG ở trạng thái Rút lui -> Dừng lại tấn công
-        if (sword_E.attack.DetectPlayer() && aiState != EnemyAI.EnemyCommandState.Retreat)
-        {
-            transform.parent.GetComponent<Rigidbody2D>().linearVelocity = Vector2.zero;
-            if (anim != null)
-            {
-                anim.SetInteger("State", 0);
-            }
-            ApplyFormationOffset();
-            return;
-        }
-
-        // Thực thi di chuyển theo trạng thái của AI
-        if (aiState == EnemyAI.EnemyCommandState.Attack)
-        {
-            HandleAttackState();
-        }
-        else if (aiState == EnemyAI.EnemyCommandState.Defend)
-        {
-            HandleDefendState();
-        }
-        else if (aiState == EnemyAI.EnemyCommandState.Retreat)
-        {
-            HandleRetreatState();
-        }
+        currentTarget = UnitTargeting.FindNearest(transform.parent.position, visionRange, visionFilter, transform.parent);
+        if (fsm != null) fsm.Tick();
     }
 
-    /// <summary>
-    /// Chế độ Tấn công: Tiến về bên trái (phía người chơi).
-    /// </summary>
-    private void HandleAttackState()
+    // ===== IUnitBrain =====
+
+    public Transform Body => transform.parent;
+    public bool IsPlayer => false;
+    public bool IsAlive => !sword_E.dead;
+    public bool CanAct => sword_E.CanMove();
+    public UnitCommand Command => MapCommand();
+    public bool TargetInVision => currentTarget != null;
+    public bool TargetInAttackRange => sword_E.attack != null && sword_E.attack.isPlayerInRange;
+    public bool EngageInDefend => true;  // địch lao ra đánh ngay khi thấy player (kể cả đang thủ), trừ khi đang Rút lui
+    public bool RangedEngage => false;   // cận chiến
+    public bool HasDefendPost => true;   // luôn có (điểm phòng thủ hoặc tính từ Base)
+    public bool UsesDefendFormation => true; // phòng thủ thì xếp thành cột dọc 4 con
+    public float DefendAnchorX => ComputeDefendX();
+    public float RetreatTargetX => ComputeRetreatX();
+    public int ForwardSign => -1;        // địch tiến sang trái (phía Player)
+
+    public void MoveStep(float dir)
     {
-        directionMove = -1; // Di chuyển sang trái
-        Flip(-1); // Quay mặt sang trái
-        Move(directionMove);
-        ApplyFormationOffset();
+        Flip(dir >= 0f ? 1 : -1);
+        Move(dir);
     }
 
-    /// <summary>
-    /// Chế độ Phòng thủ: Tập trung đứng tấn thủ tại EnemyDefendPoint.
-    /// </summary>
-    private void HandleDefendState()
+    public void FaceForward() => Flip(-1);
+
+    public void FaceTarget()
     {
-        float targetX;
-        if (defendPoint != null)
-        {
-            targetX = defendPoint.position.x;
-        }
-        else
-        {
-            // Tự động tính toán vị trí cách EnemyBase 5 đơn vị về phía bên trái (hướng sang phía Player)
-            EnemyBase eBase = FindObjectOfType<EnemyBase>();
-            if (eBase != null)
-            {
-                targetX = eBase.transform.position.x - 5f;
-            }
-            else
-            {
-                targetX = 8f; // Fallback mặc định
-            }
-        }
-
-        float distToDefend = transform.parent.position.x - targetX;
-
-        if (Mathf.Abs(distToDefend) > 0.3f)
-        {
-            // Di chuyển về phía DefendPoint
-            directionMove = distToDefend > 0 ? -1 : 1;
-            Flip(directionMove);
-            Move(directionMove);
-        }
-        else
-        {
-            // Đã đến vị trí phòng thủ -> Đứng yên chờ
-            directionMove = 0;
-            Flip(-1); // Quay mặt về phía trước (trái)
-            transform.parent.GetComponent<Rigidbody2D>().linearVelocity = Vector2.zero;
-            if (anim != null)
-            {
-                anim.SetInteger("State", 0);
-            }
-        }
-        ApplyFormationOffset();
+        if (currentTarget == null) { Flip(-1); return; }
+        Flip(currentTarget.position.x >= transform.parent.position.x ? 1 : -1);
     }
 
-    /// <summary>
-    /// Chế độ Rút lui: Toàn quân địch quay đầu chạy về bên phải (Base địch).
-    /// </summary>
-    private void HandleRetreatState()
+    public void MoveTowardTarget()
     {
-        float targetX;
-        if (retreatPoint != null)
-        {
-            targetX = retreatPoint.position.x;
-        }
-        else
-        {
-            // Tự động tính toán vị trí lùi sâu phía sau Base địch 3 đơn vị
-            EnemyBase eBase = FindObjectOfType<EnemyBase>();
-            if (eBase != null)
-            {
-                targetX = eBase.transform.position.x + 3f;
-            }
-            else
-            {
-                targetX = 15f; // Fallback mặc định
-            }
-        }
+        if (currentTarget == null) { StopAndIdle(); return; }
 
-        float distToRetreat = targetX - transform.parent.position.x;
+        Rigidbody2D rb = transform.parent.GetComponent<Rigidbody2D>();
+        Vector2 to = (Vector2)currentTarget.position - (Vector2)transform.parent.position;
+        // Vận tốc chuẩn hóa theo hướng tới mục tiêu -> tốc độ KHÔNG đổi dù đi chéo hay thẳng
+        Vector2 dir = to.sqrMagnitude > 0.0001f ? to.normalized : Vector2.zero;
+        if (rb != null) rb.linearVelocity = dir * speed;
+        Flip(dir.x >= 0f ? 1 : -1);
+        if (anim != null) anim.SetInteger("State", 2);
+    }
 
-        if (distToRetreat > 0.3f)
+    public void StopAndIdle()
+    {
+        Rigidbody2D rb = transform.parent.GetComponent<Rigidbody2D>();
+        if (rb != null) rb.linearVelocity = Vector2.zero; // zero cả Y để không trôi sau khi dừng/chém
+        if (anim != null) anim.SetInteger("State", 0);
+    }
+
+    // ===== Helpers =====
+
+    private float ComputeDefendX()
+    {
+        if (defendPoint != null) return defendPoint.position.x;
+        if (enemyBase != null) return enemyBase.transform.position.x - 5f;
+        return 8f;
+    }
+
+    private float ComputeRetreatX()
+    {
+        if (retreatPoint != null) return retreatPoint.position.x;
+        if (enemyBase != null) return enemyBase.transform.position.x + 3f;
+        return 15f;
+    }
+
+    private UnitCommand MapCommand()
+    {
+        if (EnemyAI.Instance == null) return UnitCommand.Defend;
+        switch (EnemyAI.Instance.currentEnemyState)
         {
-            // Vẫn chưa về đến điểm đích rút lui -> Tiếp tục chạy về bên phải
-            directionMove = 1;
-            Flip(1); // Quay mặt sang phải (hướng chạy trốn)
-            Move(directionMove);
+            case EnemyAI.EnemyCommandState.Attack: return UnitCommand.Attack;
+            case EnemyAI.EnemyCommandState.Retreat: return UnitCommand.Retreat;
+            default: return UnitCommand.Defend;
         }
-        else
-        {
-            // Đã về đến nơi an toàn -> Đứng yên
-            directionMove = 0;
-            Flip(-1); // Quay mặt lại sẵn sàng chiến đấu (quay sang trái)
-            transform.parent.GetComponent<Rigidbody2D>().linearVelocity = Vector2.zero;
-            if (anim != null)
-            {
-                anim.SetInteger("State", 0);
-            }
-        }
-        ApplyFormationOffset();
     }
 
     private void Flip(int dir)
     {
         if (dir == 0) return;
-        Transform parentTransform = transform.parent;
-        if (parentTransform != null)
-        {
-            Vector3 currentScale = parentTransform.localScale;
-            currentScale.x = Mathf.Abs(currentScale.x) * dir;
-            parentTransform.localScale = currentScale;
-        }
-    }
-
-    /// <summary>
-    /// Lerp vị trí Y của unit về đúng slot formation.
-    /// </summary>
-    private void ApplyFormationOffset()
-    {
-        if (UnitFormationManager.Instance == null) return;
-        if (UnitFormationManager.Instance.GetEnemyUnitCount() <= 1) return;
-
-        Vector2 offset = UnitFormationManager.Instance.GetEnemyFormationOffset(transform.parent);
-        float targetY = baseY + offset.y;
-
-        // Lerp position Y về đúng vị trí slot
-        Vector3 pos = transform.parent.position;
-        pos.y = Mathf.Lerp(pos.y, targetY, Time.deltaTime * formationLerpSpeed);
-        transform.parent.position = pos;
-
-        // Zero vel.y để gravity không kéo unit khỏi vị trí formation
-        Rigidbody2D rb = transform.parent.GetComponent<Rigidbody2D>();
-        if (rb != null)
-        {
-            rb.linearVelocity = new Vector2(rb.linearVelocity.x, 0f);
-        }
+        Vector3 s = transform.parent.localScale;
+        s.x = Mathf.Abs(s.x) * dir;
+        transform.parent.localScale = s;
     }
 }

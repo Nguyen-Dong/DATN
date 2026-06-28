@@ -9,6 +9,9 @@ public class ArcherAttack : PlayerAttack
     [SerializeField] private GameObject arrowPrefab;
     [SerializeField] private Transform shootPoint;
 
+    /// <summary>Prefab mũi tên cung thủ dùng - để hệ chiêu mưa tên dùng đúng mũi tên (cùng kích thước).</summary>
+    public GameObject ArrowPrefab => arrowPrefab;
+
     [Header("Ballistic Config")]
     [Tooltip("Tốc độ ngang của mũi tên (giảm để tên không bay quá xa)")]
     [SerializeField] private float axesX = 7f;
@@ -18,6 +21,12 @@ public class ArcherAttack : PlayerAttack
 
     [Header("Detection")]
     [SerializeField] private float detectRange = 10f;
+    [Tooltip("Khi vừa phát hiện địch (đang đi tới đứng lại): đứng idle bao lâu trước khi bắt đầu bắn (giây)")]
+    [SerializeField] private float idleBeforeAttack = 0.35f;
+
+    // Theo dõi việc vừa vào tầm để chèn 1 nhịp idle trước khi bắn
+    private bool wasInRange = false;
+    private float settleTimer = 0f;
 
     [HideInInspector] public bool attacking;
 
@@ -34,6 +43,8 @@ public class ArcherAttack : PlayerAttack
     {
         archer = GetComponentInParent<Archer>();
         timer = coolDown;
+        // Lệch nhẹ tầm phát hiện để mỗi cung thủ dừng bắn ở cự ly hơi khác nhau -> không trụ chồng 1 điểm
+        detectRange *= Random.Range(0.9f, 1.1f);
     }
 
     private void Update()
@@ -49,6 +60,7 @@ public class ArcherAttack : PlayerAttack
             attacking = false;
             animator.SetBool("Action", false);
             animator.SetBool("Ready", false);
+            wasInRange = false;
             return;
         }
 
@@ -61,19 +73,34 @@ public class ArcherAttack : PlayerAttack
                 rb.linearVelocity = Vector2.zero;
             }
 
-            // Cập nhật Animator cho chế độ bắn cung
-            animator.SetBool("Ready", true);
-            animator.SetInteger("WeaponType", 3);
+            // Vừa vào tầm -> bắt đầu 1 nhịp ĐỨNG IDLE trước khi bắn
+            if (!wasInRange) settleTimer = idleBeforeAttack;
+            wasInRange = true;
 
-            if (CanAttack())
+            if (settleTimer > 0f)
             {
-                Attack();
+                // Đang trong nhịp idle: chưa giương cung, chưa bắn
+                settleTimer -= Time.deltaTime;
+                attacking = false;
+                animator.SetBool("Action", false);
+                animator.SetBool("Ready", false);
             }
             else
             {
-                // Đang cooldown - reset Action để animator có thể chuyển trạng thái
-                // cho phép trigger SimpleBowShot hoạt động lại
-                animator.SetBool("Action", false);
+                // Hết nhịp idle -> giương cung và bắn
+                animator.SetBool("Ready", true);
+                animator.SetInteger("WeaponType", 3);
+
+                if (CanAttack())
+                {
+                    Attack();
+                }
+                else
+                {
+                    // Đang cooldown - reset Action để animator có thể chuyển trạng thái
+                    // cho phép trigger SimpleBowShot hoạt động lại
+                    animator.SetBool("Action", false);
+                }
             }
         }
         else
@@ -82,6 +109,7 @@ public class ArcherAttack : PlayerAttack
             attacking = false;
             animator.SetBool("Action", false);
             animator.SetBool("Ready", false);
+            wasInRange = false;
         }
     }
 
@@ -164,6 +192,57 @@ public class ArcherAttack : PlayerAttack
         // Reset attacking sau khi bắn xong để animator có thể chuẩn bị cho lần bắn tiếp
         attacking = false;
         animator.SetBool("Action", false);
+    }
+
+    /// <summary>
+    /// Bắn 1 LOẠT count mũi tên CÙNG LÚC, rải quanh targetPos (dùng cho chiêu). Bắn theo ballistic như thường.
+    /// </summary>
+    public void FireVolley(int count, Vector3 targetPos, float spread)
+    {
+        if (arrowPrefab == null || shootPoint == null) return;
+
+        for (int i = 0; i < count; i++)
+        {
+            Vector3 aim = targetPos + (Vector3)(Random.insideUnitCircle * spread);
+            Vector2 velocity = BallisticVelocityTo(aim);
+
+            GameObject arrowObj = Instantiate(arrowPrefab, shootPoint.position, Quaternion.identity);
+            Arrow arrow = arrowObj.GetComponent<Arrow>();
+            if (arrow != null) arrow.Initialize(damage, velocity);
+        }
+
+        // Quay mặt về phía mục tiêu
+        Transform parentTransform = transform.parent;
+        if (parentTransform != null)
+        {
+            float dir = targetPos.x >= parentTransform.position.x ? 1f : -1f;
+            Vector3 s = parentTransform.localScale;
+            s.x = Mathf.Abs(s.x) * dir;
+            parentTransform.localScale = s;
+        }
+
+        // Bật animation bắn cho khớp hình ảnh
+        if (animator != null)
+        {
+            animator.SetInteger("WeaponType", 3);
+            animator.SetTrigger("SimpleBowShot");
+        }
+    }
+
+    /// <summary>Tính vận tốc phóng (ballistic) để mũi tên tới được điểm aim.</summary>
+    private Vector2 BallisticVelocityTo(Vector3 aim)
+    {
+        float distance = Vector2.Distance(shootPoint.position, aim);
+        float t = Mathf.Clamp(distance / axesX, 0.3f, 1.5f);
+
+        float gravityScale = 1.5f;
+        Rigidbody2D arrowRb = arrowPrefab != null ? arrowPrefab.GetComponent<Rigidbody2D>() : null;
+        if (arrowRb != null) gravityScale = arrowRb.gravityScale;
+        float g = -Physics2D.gravity.y * gravityScale;
+
+        float vx = (aim.x - shootPoint.position.x) / t;
+        float vy = (aim.y - shootPoint.position.y + 0.5f * g * t * t) / t;
+        return new Vector2(vx, vy);
     }
 
     /// <summary>

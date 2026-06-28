@@ -42,7 +42,7 @@ public class StatUpgrader : MonoBehaviour
         if (CurrentFormIndex >= forms.Count - 1) return false;
 
         UnitFormSO nextForm = forms[CurrentFormIndex + 1];
-        if(CurrencyManager.Instance.TrySpendGold(nextForm.evolveCost))
+        if(Pay(nextForm.evolveCost))
         {
             CurrentFormIndex++;
 
@@ -55,10 +55,16 @@ public class StatUpgrader : MonoBehaviour
         return false;
     }
 
+    /// <summary>Trừ vàng IN-MATCH (qua GameManager). Trả về true nếu đủ tiền và đã trừ.</summary>
+    private bool Pay(int cost)
+    {
+        return GameManager.Instance != null && GameManager.Instance.TrySpendGold(cost);
+    }
+
     public bool TryUpgradeDamage()
     {
         if (DamageLevel >= maxStatLevel) return false;
-        if (CurrencyManager.Instance.TrySpendGold(statUpgradeCost))
+        if (Pay(statUpgradeCost))
         {
             DamageLevel++;
             RecalculateStats();
@@ -70,7 +76,7 @@ public class StatUpgrader : MonoBehaviour
     public bool TryUpgradeHealth()
     {
         if (HealthLevel >= maxStatLevel) return false;
-        if (CurrencyManager.Instance.TrySpendGold(statUpgradeCost))
+        if (Pay(statUpgradeCost))
         {
             HealthLevel++;
             RecalculateStats();
@@ -82,7 +88,7 @@ public class StatUpgrader : MonoBehaviour
     public bool TryUpgradeSpeed()
     {
         if (SpeedLevel >= maxStatLevel) return false;
-        if (CurrencyManager.Instance.TrySpendGold(statUpgradeCost))
+        if (Pay(statUpgradeCost))
         {
             SpeedLevel++;
             RecalculateStats();

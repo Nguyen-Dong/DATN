@@ -1,5 +1,55 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &31623901427796664
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 7587162098469020034}
+  - component: {fileID: 3577546302216731844}
+  m_Layer: 7
+  m_Name: Movement
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &7587162098469020034
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 31623901427796664}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 795808423035789781}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &3577546302216731844
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 31623901427796664}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 12243a9b81727ab4497c39cb4847de37, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::SwordMovement
+  speed: 2
+  directionMove: 1
+  anim: {fileID: 5613461591189865572}
+  pointChangeDirCheck: {fileID: 0}
+  visionRange: 2.5
+  retreatOffsetBehindCamera: 3
 --- !u!1 &65726008001378491
 GameObject:
   m_ObjectHideFlags: 0
@@ -10,7 +60,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8803618358495881930}
   - component: {fileID: 2949845762207492177}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: ForearmL
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -54,8 +104,6 @@ SpriteRenderer:
   m_RayTracingAccelStructBuildFlagsOverride: 0
   m_RayTracingAccelStructBuildFlags: 1
   m_SmallMeshCulling: 1
-  m_ForceMeshLod: -1
-  m_MeshLodSelectionBias: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -77,7 +125,6 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 55
@@ -102,7 +149,7 @@ GameObject:
   m_Component:
   - component: {fileID: 295605685979884598}
   - component: {fileID: 1145437060393510434}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: 'HandR[Armor]'
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -144,8 +191,6 @@ SpriteRenderer:
   m_RayTracingAccelStructBuildFlagsOverride: 0
   m_RayTracingAccelStructBuildFlags: 1
   m_SmallMeshCulling: 1
-  m_ForceMeshLod: -1
-  m_MeshLodSelectionBias: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -167,7 +212,6 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 390
@@ -192,7 +236,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5388408328926932535}
   - component: {fileID: 5380505422202441326}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: MeleeWeapon
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -235,8 +279,6 @@ SpriteRenderer:
   m_RayTracingAccelStructBuildFlagsOverride: 0
   m_RayTracingAccelStructBuildFlags: 1
   m_SmallMeshCulling: 1
-  m_ForceMeshLod: -1
-  m_MeshLodSelectionBias: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -258,7 +300,6 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 75
@@ -282,7 +323,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7152227493014813720}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: SlideTransform
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -316,7 +357,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4964415124641028208}
   - component: {fileID: 3171400076617820278}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: 'SleeveR[Armor]'
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -358,8 +399,6 @@ SpriteRenderer:
   m_RayTracingAccelStructBuildFlagsOverride: 0
   m_RayTracingAccelStructBuildFlags: 1
   m_SmallMeshCulling: 1
-  m_ForceMeshLod: -1
-  m_MeshLodSelectionBias: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -381,7 +420,6 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 400
@@ -406,7 +444,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2213515849723300070}
   - component: {fileID: 3096428660342629270}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Ears
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -448,8 +486,6 @@ SpriteRenderer:
   m_RayTracingAccelStructBuildFlagsOverride: 0
   m_RayTracingAccelStructBuildFlags: 1
   m_SmallMeshCulling: 1
-  m_ForceMeshLod: -1
-  m_MeshLodSelectionBias: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -471,7 +507,6 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 255
@@ -497,7 +532,7 @@ GameObject:
   - component: {fileID: 3545865001613458895}
   - component: {fileID: 3175773652396712784}
   - component: {fileID: 865270553527831601}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Magazine
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -539,8 +574,6 @@ SpriteRenderer:
   m_RayTracingAccelStructBuildFlagsOverride: 0
   m_RayTracingAccelStructBuildFlags: 1
   m_SmallMeshCulling: 1
-  m_ForceMeshLod: -1
-  m_MeshLodSelectionBias: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -562,7 +595,6 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 310
@@ -684,7 +716,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4459854019243939878}
   - component: {fileID: 7428065126858081267}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: 'Limb[1]'
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -726,8 +758,6 @@ SpriteRenderer:
   m_RayTracingAccelStructBuildFlagsOverride: 0
   m_RayTracingAccelStructBuildFlags: 1
   m_SmallMeshCulling: 1
-  m_ForceMeshLod: -1
-  m_MeshLodSelectionBias: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -749,7 +779,6 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 285
@@ -764,6 +793,60 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!1 &716991791338964321
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 5864017890260398506}
+  - component: {fileID: 6539470759465914998}
+  m_Layer: 7
+  m_Name: Attack
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &5864017890260398506
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 716991791338964321}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0.97, y: 0.5400001, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 6192913820447049764}
+  m_Father: {fileID: 795808423035789781}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &6539470759465914998
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 716991791338964321}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 78a78e8ddf4420746892938975b4eb20, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::SwordAttack
+  damage: 3
+  coolDown: 1
+  attacked: 0
+  animator: {fileID: 5613461591189865572}
+  attackPoints:
+  - {fileID: 5572550675358632369}
+  radius: 0.4
+  attacking: 0
+  isEnemyInRange: 0
 --- !u!1 &1107409090807299462
 GameObject:
   m_ObjectHideFlags: 0
@@ -773,7 +856,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1232597146039646086}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Upper
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -811,7 +894,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3567275488590239664}
   - component: {fileID: 2339929919598094663}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: 'Limb[2]'
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -853,8 +936,6 @@ SpriteRenderer:
   m_RayTracingAccelStructBuildFlagsOverride: 0
   m_RayTracingAccelStructBuildFlags: 1
   m_SmallMeshCulling: 1
-  m_ForceMeshLod: -1
-  m_MeshLodSelectionBias: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -876,7 +957,6 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 280
@@ -901,7 +981,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7238577173734579589}
   - component: {fileID: 4492839790858393625}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: 'ForearmL[Armor]'
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -943,8 +1023,6 @@ SpriteRenderer:
   m_RayTracingAccelStructBuildFlagsOverride: 0
   m_RayTracingAccelStructBuildFlags: 1
   m_SmallMeshCulling: 1
-  m_ForceMeshLod: -1
-  m_MeshLodSelectionBias: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -966,7 +1044,6 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 60
@@ -991,7 +1068,7 @@ GameObject:
   m_Component:
   - component: {fileID: 656657276228188902}
   - component: {fileID: 338336196226314261}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: 'Finger[Armor]'
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1033,8 +1110,6 @@ SpriteRenderer:
   m_RayTracingAccelStructBuildFlagsOverride: 0
   m_RayTracingAccelStructBuildFlags: 1
   m_SmallMeshCulling: 1
-  m_ForceMeshLod: -1
-  m_MeshLodSelectionBias: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -1056,7 +1131,6 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 375
@@ -1081,7 +1155,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4344600347124160802}
   - component: {fileID: 5734169172082136316}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: 'ArmR[Armor]'
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1123,8 +1197,6 @@ SpriteRenderer:
   m_RayTracingAccelStructBuildFlagsOverride: 0
   m_RayTracingAccelStructBuildFlags: 1
   m_SmallMeshCulling: 1
-  m_ForceMeshLod: -1
-  m_MeshLodSelectionBias: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -1146,7 +1218,6 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 185
@@ -1171,7 +1242,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4022633087311305211}
   - component: {fileID: 7272903500697682872}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: 'Finger[Armor]'
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1213,8 +1284,6 @@ SpriteRenderer:
   m_RayTracingAccelStructBuildFlagsOverride: 0
   m_RayTracingAccelStructBuildFlags: 1
   m_SmallMeshCulling: 1
-  m_ForceMeshLod: -1
-  m_MeshLodSelectionBias: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -1236,7 +1305,6 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 395
@@ -1261,7 +1329,7 @@ GameObject:
   m_Component:
   - component: {fileID: 247232806696276617}
   - component: {fileID: 345332557845053740}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: HandL
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1306,8 +1374,6 @@ SpriteRenderer:
   m_RayTracingAccelStructBuildFlagsOverride: 0
   m_RayTracingAccelStructBuildFlags: 1
   m_SmallMeshCulling: 1
-  m_ForceMeshLod: -1
-  m_MeshLodSelectionBias: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -1329,7 +1395,6 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 330
@@ -1354,7 +1419,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1407189023668439555}
   - component: {fileID: 4506133222983271347}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: HandR
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1397,8 +1462,6 @@ SpriteRenderer:
   m_RayTracingAccelStructBuildFlagsOverride: 0
   m_RayTracingAccelStructBuildFlags: 1
   m_SmallMeshCulling: 1
-  m_ForceMeshLod: -1
-  m_MeshLodSelectionBias: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -1420,7 +1483,6 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 190
@@ -1445,7 +1507,7 @@ GameObject:
   m_Component:
   - component: {fileID: 9093770878177340748}
   - component: {fileID: 8425124762665235317}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Slide
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1487,8 +1549,6 @@ SpriteRenderer:
   m_RayTracingAccelStructBuildFlagsOverride: 0
   m_RayTracingAccelStructBuildFlags: 1
   m_SmallMeshCulling: 1
-  m_ForceMeshLod: -1
-  m_MeshLodSelectionBias: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -1510,7 +1570,6 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 350
@@ -1535,7 +1594,7 @@ GameObject:
   m_Component:
   - component: {fileID: 165782782632011638}
   - component: {fileID: 2115769013333389265}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Shin
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1578,8 +1637,6 @@ SpriteRenderer:
   m_RayTracingAccelStructBuildFlagsOverride: 0
   m_RayTracingAccelStructBuildFlags: 1
   m_SmallMeshCulling: 1
-  m_ForceMeshLod: -1
-  m_MeshLodSelectionBias: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -1601,7 +1658,6 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 125
@@ -1626,7 +1682,7 @@ GameObject:
   m_Component:
   - component: {fileID: 9099088164012154087}
   - component: {fileID: 3846243487966606932}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: 'ForearmR[Armor]'
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1668,8 +1724,6 @@ SpriteRenderer:
   m_RayTracingAccelStructBuildFlagsOverride: 0
   m_RayTracingAccelStructBuildFlags: 1
   m_SmallMeshCulling: 1
-  m_ForceMeshLod: -1
-  m_MeshLodSelectionBias: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -1691,7 +1745,6 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 220
@@ -1716,7 +1769,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8852650881735184125}
   - component: {fileID: 1932391225343641613}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: HandL
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1760,8 +1813,6 @@ SpriteRenderer:
   m_RayTracingAccelStructBuildFlagsOverride: 0
   m_RayTracingAccelStructBuildFlags: 1
   m_SmallMeshCulling: 1
-  m_ForceMeshLod: -1
-  m_MeshLodSelectionBias: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -1783,7 +1834,6 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 345
@@ -1808,7 +1858,7 @@ GameObject:
   m_Component:
   - component: {fileID: 9125027827733393913}
   - component: {fileID: 6702188590604238054}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: 'Limb[2]'
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1850,8 +1900,6 @@ SpriteRenderer:
   m_RayTracingAccelStructBuildFlagsOverride: 0
   m_RayTracingAccelStructBuildFlags: 1
   m_SmallMeshCulling: 1
-  m_ForceMeshLod: -1
-  m_MeshLodSelectionBias: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -1873,7 +1921,6 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 40
@@ -1898,7 +1945,7 @@ GameObject:
   m_Component:
   - component: {fileID: 569378479229165253}
   - component: {fileID: 6397427033313147986}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Mouth
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1940,8 +1987,6 @@ SpriteRenderer:
   m_RayTracingAccelStructBuildFlagsOverride: 0
   m_RayTracingAccelStructBuildFlags: 1
   m_SmallMeshCulling: 1
-  m_ForceMeshLod: -1
-  m_MeshLodSelectionBias: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -1963,7 +2008,6 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 240
@@ -1988,7 +2032,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4795446389484734060}
   - component: {fileID: 2697680166755846242}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: 'HandR[Armor]'
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2030,8 +2074,6 @@ SpriteRenderer:
   m_RayTracingAccelStructBuildFlagsOverride: 0
   m_RayTracingAccelStructBuildFlags: 1
   m_SmallMeshCulling: 1
-  m_ForceMeshLod: -1
-  m_MeshLodSelectionBias: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -2053,7 +2095,6 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 195
@@ -2078,7 +2119,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7606760744893646955}
   - component: {fileID: 2524107739809509200}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Torso
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2121,8 +2162,6 @@ SpriteRenderer:
   m_RayTracingAccelStructBuildFlagsOverride: 0
   m_RayTracingAccelStructBuildFlags: 1
   m_SmallMeshCulling: 1
-  m_ForceMeshLod: -1
-  m_MeshLodSelectionBias: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -2144,7 +2183,6 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 110
@@ -2169,7 +2207,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7974864197519427422}
   - component: {fileID: 4059497768400750252}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: 'Shin[Armor]'
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2211,8 +2249,6 @@ SpriteRenderer:
   m_RayTracingAccelStructBuildFlagsOverride: 0
   m_RayTracingAccelStructBuildFlags: 1
   m_SmallMeshCulling: 1
-  m_ForceMeshLod: -1
-  m_MeshLodSelectionBias: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -2234,7 +2270,6 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 155
@@ -2259,7 +2294,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1898528039809992786}
   - component: {fileID: 295199205763702484}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Finger
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2302,8 +2337,6 @@ SpriteRenderer:
   m_RayTracingAccelStructBuildFlagsOverride: 0
   m_RayTracingAccelStructBuildFlags: 1
   m_SmallMeshCulling: 1
-  m_ForceMeshLod: -1
-  m_MeshLodSelectionBias: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -2325,7 +2358,6 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 340
@@ -2350,7 +2382,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5637889621182775607}
   - component: {fileID: 155291204430708449}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Glasses
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2392,8 +2424,6 @@ SpriteRenderer:
   m_RayTracingAccelStructBuildFlagsOverride: 0
   m_RayTracingAccelStructBuildFlags: 1
   m_SmallMeshCulling: 1
-  m_ForceMeshLod: -1
-  m_MeshLodSelectionBias: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -2415,7 +2445,6 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 270
@@ -2440,7 +2469,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6365192291692634717}
   - component: {fileID: 5808859596555529635}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: 'ArmR[1]'
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2484,8 +2513,6 @@ SpriteRenderer:
   m_RayTracingAccelStructBuildFlagsOverride: 0
   m_RayTracingAccelStructBuildFlags: 1
   m_SmallMeshCulling: 1
-  m_ForceMeshLod: -1
-  m_MeshLodSelectionBias: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -2507,7 +2534,6 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 205
@@ -2533,7 +2559,7 @@ GameObject:
   - component: {fileID: 7768727671056901337}
   - component: {fileID: 7786887837013030253}
   - component: {fileID: 5604365018549153735}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: CommonYellow
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -7336,8 +7362,6 @@ ParticleSystemRenderer:
   m_RayTracingAccelStructBuildFlagsOverride: 0
   m_RayTracingAccelStructBuildFlags: 1
   m_SmallMeshCulling: 1
-  m_ForceMeshLod: -1
-  m_MeshLodSelectionBias: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -7360,7 +7384,6 @@ ParticleSystemRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 319
@@ -7406,7 +7429,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8049316581263472571}
   - component: {fileID: 5119942606337787255}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Earrings
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -7448,8 +7471,6 @@ SpriteRenderer:
   m_RayTracingAccelStructBuildFlagsOverride: 0
   m_RayTracingAccelStructBuildFlags: 1
   m_SmallMeshCulling: 1
-  m_ForceMeshLod: -1
-  m_MeshLodSelectionBias: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -7471,7 +7492,6 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 260
@@ -7496,7 +7516,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6367957784022916672}
   - component: {fileID: 6846912142451098978}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Body
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -7543,7 +7563,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 9405010587698926}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Edge
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -7576,7 +7596,7 @@ GameObject:
   - component: {fileID: 6135558454074991094}
   - component: {fileID: 5613461591189865572}
   - component: {fileID: 2160394976074319568}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Animation
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -7645,7 +7665,7 @@ GameObject:
   m_Component:
   - component: {fileID: 280360939514351203}
   - component: {fileID: 6595802172999142398}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: 'ForearmR[Armor]'
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -7687,8 +7707,6 @@ SpriteRenderer:
   m_RayTracingAccelStructBuildFlagsOverride: 0
   m_RayTracingAccelStructBuildFlags: 1
   m_SmallMeshCulling: 1
-  m_ForceMeshLod: -1
-  m_MeshLodSelectionBias: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -7710,7 +7728,6 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 180
@@ -7735,7 +7752,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2726629689459108664}
   - component: {fileID: 797230468127039411}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: 'ForearmL[Armor]'
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -7777,8 +7794,6 @@ SpriteRenderer:
   m_RayTracingAccelStructBuildFlagsOverride: 0
   m_RayTracingAccelStructBuildFlags: 1
   m_SmallMeshCulling: 1
-  m_ForceMeshLod: -1
-  m_MeshLodSelectionBias: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -7800,7 +7815,6 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 65
@@ -7825,7 +7839,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3087086734655048726}
   - component: {fileID: 8781411490631049228}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Beard
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -7867,8 +7881,6 @@ SpriteRenderer:
   m_RayTracingAccelStructBuildFlagsOverride: 0
   m_RayTracingAccelStructBuildFlags: 1
   m_SmallMeshCulling: 1
-  m_ForceMeshLod: -1
-  m_MeshLodSelectionBias: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -7890,7 +7902,6 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 235
@@ -7915,7 +7926,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7460293840011728591}
   - component: {fileID: 361931922896077297}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: ArmL
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -7960,8 +7971,6 @@ SpriteRenderer:
   m_RayTracingAccelStructBuildFlagsOverride: 0
   m_RayTracingAccelStructBuildFlags: 1
   m_SmallMeshCulling: 1
-  m_ForceMeshLod: -1
-  m_MeshLodSelectionBias: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -7983,7 +7992,6 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 15
@@ -8008,7 +8016,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7104153909459717714}
   - component: {fileID: 143267468977441693}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Helmet
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -8050,8 +8058,6 @@ SpriteRenderer:
   m_RayTracingAccelStructBuildFlagsOverride: 0
   m_RayTracingAccelStructBuildFlags: 1
   m_SmallMeshCulling: 1
-  m_ForceMeshLod: -1
-  m_MeshLodSelectionBias: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -8073,7 +8079,6 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 275
@@ -8099,7 +8104,7 @@ GameObject:
   - component: {fileID: 7600735964857323892}
   - component: {fileID: 451414983487169595}
   - component: {fileID: 1813190888773586209}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: MeleeWeapon
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -8142,8 +8147,6 @@ SpriteRenderer:
   m_RayTracingAccelStructBuildFlagsOverride: 0
   m_RayTracingAccelStructBuildFlags: 1
   m_SmallMeshCulling: 1
-  m_ForceMeshLod: -1
-  m_MeshLodSelectionBias: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -8165,7 +8168,6 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 320
@@ -8204,7 +8206,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2104336142089045421}
   - component: {fileID: 8667482470155872893}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Shield
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -8246,8 +8248,6 @@ SpriteRenderer:
   m_RayTracingAccelStructBuildFlagsOverride: 0
   m_RayTracingAccelStructBuildFlags: 1
   m_SmallMeshCulling: 1
-  m_ForceMeshLod: -1
-  m_MeshLodSelectionBias: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -8269,7 +8269,6 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 300
@@ -8297,7 +8296,7 @@ GameObject:
   - component: {fileID: 6820486990859073352}
   - component: {fileID: 4374296997733226346}
   - component: {fileID: 7265566928192616645}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Firearm
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -8520,7 +8519,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7410656160782081409}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: FireTransform
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -8554,7 +8553,7 @@ GameObject:
   - component: {fileID: 583408024086625644}
   - component: {fileID: 8711370284471465703}
   - component: {fileID: 4463474989052365013}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Shell
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -8612,8 +8611,6 @@ SpriteRenderer:
   m_RayTracingAccelStructBuildFlagsOverride: 0
   m_RayTracingAccelStructBuildFlags: 1
   m_SmallMeshCulling: 1
-  m_ForceMeshLod: -1
-  m_MeshLodSelectionBias: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -8635,7 +8632,6 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 405
@@ -8660,7 +8656,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6300011539887457956}
   - component: {fileID: 129874634479225218}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: 'Limb[1]'
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -8702,8 +8698,6 @@ SpriteRenderer:
   m_RayTracingAccelStructBuildFlagsOverride: 0
   m_RayTracingAccelStructBuildFlags: 1
   m_SmallMeshCulling: 1
-  m_ForceMeshLod: -1
-  m_MeshLodSelectionBias: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -8725,7 +8719,6 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 35
@@ -8750,7 +8743,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3906054046938301321}
   - component: {fileID: 1387901765753502115}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: 'Leg[Armor]'
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -8792,8 +8785,6 @@ SpriteRenderer:
   m_RayTracingAccelStructBuildFlagsOverride: 0
   m_RayTracingAccelStructBuildFlags: 1
   m_SmallMeshCulling: 1
-  m_ForceMeshLod: -1
-  m_MeshLodSelectionBias: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -8815,7 +8806,6 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 150
@@ -8842,7 +8832,13 @@ GameObject:
   - component: {fileID: 1685120214757812603}
   - component: {fileID: 7898757809313682255}
   - component: {fileID: 5540386898598273937}
-  m_Layer: 0
+  - component: {fileID: 4779011954240984362}
+  - component: {fileID: 2505549302967599463}
+  - component: {fileID: 2251374200329993217}
+  - component: {fileID: 8353606351853525518}
+  - component: {fileID: 7345671058283421498}
+  - component: {fileID: 376895565656889969}
+  m_Layer: 7
   m_Name: SpearmanLv1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -8863,6 +8859,8 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 6135558454074991094}
+  - {fileID: 7587162098469020034}
+  - {fileID: 5864017890260398506}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1685120214757812603
@@ -9150,12 +9148,141 @@ MonoBehaviour:
   LegR: {fileID: 6401794101690140227}
   MeleeWeapon:
   - {fileID: 5388408328926932535}
-  - {fileID: 5388408328926932535}
+  - {fileID: 7600735964857323892}
   Shield: {fileID: 2104336142089045421}
   Bow:
   - {fileID: 6217654297206615536}
   - {fileID: 6217654297206615536}
   Firearm: {fileID: 4984487144724524835}
+--- !u!114 &4779011954240984362
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4593261534034748746}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ae333e5ba95cacd48a35816de53357ca, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Sword
+  rb: {fileID: 0}
+  createdDust: 0
+  maxHealth: 100
+  currentHealth: 0
+  dead: 0
+  defense: 0
+  unitScale: 0.55
+  spawnJitterX: 0.2
+  spawnJitterY: 0.4
+  lieDown: 0
+  attack: {fileID: 0}
+  animationEvent: {fileID: 0}
+  movement: {fileID: 0}
+--- !u!70 &2505549302967599463
+CapsuleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4593261534034748746}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_CompositeOperation: 0
+  m_CompositeOrder: 0
+  m_Offset: {x: -0.012806892, y: 1.2166505}
+  m_Size: {x: 1.0891151, y: 2.6648903}
+  m_Direction: 0
+--- !u!50 &2251374200329993217
+Rigidbody2D:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4593261534034748746}
+  m_BodyType: 0
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDamping: 0
+  m_AngularDamping: 0.05
+  m_GravityScale: 0
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 4
+--- !u!114 &8353606351853525518
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4593261534034748746}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7f62da3299b25114c94d0796fea67469, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::UnitSeparation
+  radius: 0.45
+  maxPushPerFrame: 0.05
+--- !u!114 &7345671058283421498
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4593261534034748746}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b9b08f059c4714d4eb772c258342da36, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::UnitType
+  type: 2
+--- !u!114 &376895565656889969
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4593261534034748746}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c19cd1db7e415334396146a76b731083, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ArmoryApplier
+  upgradeData: {fileID: 11400000, guid: ab554ca8d5a820144a2b1b082d690a88, type: 2}
 --- !u!1 &4804683944714236446
 GameObject:
   m_ObjectHideFlags: 0
@@ -9166,7 +9293,7 @@ GameObject:
   m_Component:
   - component: {fileID: 270680644833327515}
   - component: {fileID: 7893625172760781800}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Eyes
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -9208,8 +9335,6 @@ SpriteRenderer:
   m_RayTracingAccelStructBuildFlagsOverride: 0
   m_RayTracingAccelStructBuildFlags: 1
   m_SmallMeshCulling: 1
-  m_ForceMeshLod: -1
-  m_MeshLodSelectionBias: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -9231,7 +9356,6 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 230
@@ -9256,7 +9380,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5899708802750534486}
   - component: {fileID: 8599244266535919187}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: ForearmR
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -9301,8 +9425,6 @@ SpriteRenderer:
   m_RayTracingAccelStructBuildFlagsOverride: 0
   m_RayTracingAccelStructBuildFlags: 1
   m_SmallMeshCulling: 1
-  m_ForceMeshLod: -1
-  m_MeshLodSelectionBias: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -9324,7 +9446,6 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 175
@@ -9349,7 +9470,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1138616609926071292}
   - component: {fileID: 1217027212027420882}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: 'Leg[L]'
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -9393,8 +9514,6 @@ SpriteRenderer:
   m_RayTracingAccelStructBuildFlagsOverride: 0
   m_RayTracingAccelStructBuildFlags: 1
   m_SmallMeshCulling: 1
-  m_ForceMeshLod: -1
-  m_MeshLodSelectionBias: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -9416,7 +9535,6 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 120
@@ -9441,7 +9559,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3876294478169164030}
   - component: {fileID: 62819516440975906}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: 'HandL[Armor]'
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -9483,8 +9601,6 @@ SpriteRenderer:
   m_RayTracingAccelStructBuildFlagsOverride: 0
   m_RayTracingAccelStructBuildFlags: 1
   m_SmallMeshCulling: 1
-  m_ForceMeshLod: -1
-  m_MeshLodSelectionBias: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -9506,7 +9622,6 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 355
@@ -9531,7 +9646,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8677804074904961651}
   - component: {fileID: 5154767999714375076}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: 'Finger[Armor]'
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -9573,8 +9688,6 @@ SpriteRenderer:
   m_RayTracingAccelStructBuildFlagsOverride: 0
   m_RayTracingAccelStructBuildFlags: 1
   m_SmallMeshCulling: 1
-  m_ForceMeshLod: -1
-  m_MeshLodSelectionBias: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -9596,7 +9709,6 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 365
@@ -9620,7 +9732,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2993859193667280859}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: ProjectileTransform
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -9652,7 +9764,7 @@ GameObject:
   m_Component:
   - component: {fileID: 156647392443557302}
   - component: {fileID: 1756002671548572375}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Mask
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -9694,8 +9806,6 @@ SpriteRenderer:
   m_RayTracingAccelStructBuildFlagsOverride: 0
   m_RayTracingAccelStructBuildFlags: 1
   m_SmallMeshCulling: 1
-  m_ForceMeshLod: -1
-  m_MeshLodSelectionBias: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -9717,7 +9827,6 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 265
@@ -9742,7 +9851,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8119872518911230544}
   - component: {fileID: 142038764877926965}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: 'ArmL[Armor]'
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -9784,8 +9893,6 @@ SpriteRenderer:
   m_RayTracingAccelStructBuildFlagsOverride: 0
   m_RayTracingAccelStructBuildFlags: 1
   m_SmallMeshCulling: 1
-  m_ForceMeshLod: -1
-  m_MeshLodSelectionBias: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -9807,7 +9914,6 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 100
@@ -9832,7 +9938,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4729540776627110637}
   - component: {fileID: 2950387349765413150}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: 'Finger[Armor]'
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -9874,8 +9980,6 @@ SpriteRenderer:
   m_RayTracingAccelStructBuildFlagsOverride: 0
   m_RayTracingAccelStructBuildFlags: 1
   m_SmallMeshCulling: 1
-  m_ForceMeshLod: -1
-  m_MeshLodSelectionBias: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -9897,7 +10001,6 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 90
@@ -9922,7 +10025,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7061200822200878662}
   - component: {fileID: 8002191203743841941}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Riser
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -9964,8 +10067,6 @@ SpriteRenderer:
   m_RayTracingAccelStructBuildFlagsOverride: 0
   m_RayTracingAccelStructBuildFlags: 1
   m_SmallMeshCulling: 1
-  m_ForceMeshLod: -1
-  m_MeshLodSelectionBias: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -9987,7 +10088,6 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 290
@@ -10002,6 +10102,37 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!1 &5572550675358632369
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 6192913820447049764}
+  m_Layer: 7
+  m_Name: AttackPoint
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &6192913820447049764
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5572550675358632369}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 5864017890260398506}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &5716345209016945093
 GameObject:
   m_ObjectHideFlags: 0
@@ -10012,7 +10143,7 @@ GameObject:
   m_Component:
   - component: {fileID: 538023628057756117}
   - component: {fileID: 8418549757177242904}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Arrow
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -10054,8 +10185,6 @@ SpriteRenderer:
   m_RayTracingAccelStructBuildFlagsOverride: 0
   m_RayTracingAccelStructBuildFlags: 1
   m_SmallMeshCulling: 1
-  m_ForceMeshLod: -1
-  m_MeshLodSelectionBias: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -10077,7 +10206,6 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 295
@@ -10102,7 +10230,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2871094744044324281}
   - component: {fileID: 1889127271875445607}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: 'ForearmL[1]'
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -10146,8 +10274,6 @@ SpriteRenderer:
   m_RayTracingAccelStructBuildFlagsOverride: 0
   m_RayTracingAccelStructBuildFlags: 1
   m_SmallMeshCulling: 1
-  m_ForceMeshLod: -1
-  m_MeshLodSelectionBias: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -10169,7 +10295,6 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 25
@@ -10194,7 +10319,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5195314715045487811}
   - component: {fileID: 97859899103251796}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Shadow
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -10236,8 +10361,6 @@ SpriteRenderer:
   m_RayTracingAccelStructBuildFlagsOverride: 0
   m_RayTracingAccelStructBuildFlags: 1
   m_SmallMeshCulling: 1
-  m_ForceMeshLod: -1
-  m_MeshLodSelectionBias: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -10259,7 +10382,6 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
@@ -10283,7 +10405,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7932919778299149621}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: ForestockTransform
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -10316,7 +10438,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3517177538401149172}
   - component: {fileID: 4904227282147452852}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: 'ForearmL[2]'
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -10360,8 +10482,6 @@ SpriteRenderer:
   m_RayTracingAccelStructBuildFlagsOverride: 0
   m_RayTracingAccelStructBuildFlags: 1
   m_SmallMeshCulling: 1
-  m_ForceMeshLod: -1
-  m_MeshLodSelectionBias: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -10383,7 +10503,6 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 50
@@ -10408,7 +10527,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4900588799445748586}
   - component: {fileID: 3875706515345516484}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: 'Pelvis[Armor]'
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -10450,8 +10569,6 @@ SpriteRenderer:
   m_RayTracingAccelStructBuildFlagsOverride: 0
   m_RayTracingAccelStructBuildFlags: 1
   m_SmallMeshCulling: 1
-  m_ForceMeshLod: -1
-  m_MeshLodSelectionBias: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -10473,7 +10590,6 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 165
@@ -10497,7 +10613,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3851736563472442720}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Bow
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -10533,7 +10649,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2758914711770739751}
   - component: {fileID: 468579514701554195}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Eyebrows
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -10575,8 +10691,6 @@ SpriteRenderer:
   m_RayTracingAccelStructBuildFlagsOverride: 0
   m_RayTracingAccelStructBuildFlags: 1
   m_SmallMeshCulling: 1
-  m_ForceMeshLod: -1
-  m_MeshLodSelectionBias: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -10598,7 +10712,6 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 245
@@ -10623,7 +10736,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3499966423350344388}
   - component: {fileID: 294136464398237955}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: 'ArmR[Armor]'
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -10665,8 +10778,6 @@ SpriteRenderer:
   m_RayTracingAccelStructBuildFlagsOverride: 0
   m_RayTracingAccelStructBuildFlags: 1
   m_SmallMeshCulling: 1
-  m_ForceMeshLod: -1
-  m_MeshLodSelectionBias: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -10688,7 +10799,6 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 215
@@ -10713,7 +10823,7 @@ GameObject:
   m_Component:
   - component: {fileID: 520415696298930134}
   - component: {fileID: 138619275553443424}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Forestock
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -10755,8 +10865,6 @@ SpriteRenderer:
   m_RayTracingAccelStructBuildFlagsOverride: 0
   m_RayTracingAccelStructBuildFlags: 1
   m_SmallMeshCulling: 1
-  m_ForceMeshLod: -1
-  m_MeshLodSelectionBias: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -10778,7 +10886,6 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 335
@@ -10803,7 +10910,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1346973683643703693}
   - component: {fileID: 2243786016524785141}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: 'Shin[Armor]'
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -10845,8 +10952,6 @@ SpriteRenderer:
   m_RayTracingAccelStructBuildFlagsOverride: 0
   m_RayTracingAccelStructBuildFlags: 1
   m_SmallMeshCulling: 1
-  m_ForceMeshLod: -1
-  m_MeshLodSelectionBias: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -10868,7 +10973,6 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 135
@@ -10893,7 +10997,7 @@ GameObject:
   m_Component:
   - component: {fileID: 12402747447104497}
   - component: {fileID: 8606439715488798814}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Cape
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -10936,8 +11040,6 @@ SpriteRenderer:
   m_RayTracingAccelStructBuildFlagsOverride: 0
   m_RayTracingAccelStructBuildFlags: 1
   m_SmallMeshCulling: 1
-  m_ForceMeshLod: -1
-  m_MeshLodSelectionBias: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -10959,7 +11061,6 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 10
@@ -10984,7 +11085,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3813286747128250293}
   - component: {fileID: 2209293880399187657}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: 'Torso[Armor]'
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -11026,8 +11127,6 @@ SpriteRenderer:
   m_RayTracingAccelStructBuildFlagsOverride: 0
   m_RayTracingAccelStructBuildFlags: 1
   m_SmallMeshCulling: 1
-  m_ForceMeshLod: -1
-  m_MeshLodSelectionBias: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -11049,7 +11148,6 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 160
@@ -11073,7 +11171,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6217654297206615536}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Bow
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -11108,7 +11206,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6790098517912507414}
   - component: {fileID: 4885585406063972291}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Riser
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -11150,8 +11248,6 @@ SpriteRenderer:
   m_RayTracingAccelStructBuildFlagsOverride: 0
   m_RayTracingAccelStructBuildFlags: 1
   m_SmallMeshCulling: 1
-  m_ForceMeshLod: -1
-  m_MeshLodSelectionBias: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -11173,7 +11269,6 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 45
@@ -11198,7 +11293,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1114978838276138787}
   - component: {fileID: 6072605597911005869}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Head
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -11250,8 +11345,6 @@ SpriteRenderer:
   m_RayTracingAccelStructBuildFlagsOverride: 0
   m_RayTracingAccelStructBuildFlags: 1
   m_SmallMeshCulling: 1
-  m_ForceMeshLod: -1
-  m_MeshLodSelectionBias: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -11273,7 +11366,6 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 225
@@ -11298,7 +11390,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8400094604515811067}
   - component: {fileID: 5967667421747158174}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Bullet
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -11340,8 +11432,6 @@ SpriteRenderer:
   m_RayTracingAccelStructBuildFlagsOverride: 0
   m_RayTracingAccelStructBuildFlags: 1
   m_SmallMeshCulling: 1
-  m_ForceMeshLod: -1
-  m_MeshLodSelectionBias: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -11363,7 +11453,6 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 305
@@ -11388,7 +11477,7 @@ GameObject:
   m_Component:
   - component: {fileID: 507102101407300659}
   - component: {fileID: 2706562601606038477}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Pelvis
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -11431,8 +11520,6 @@ SpriteRenderer:
   m_RayTracingAccelStructBuildFlagsOverride: 0
   m_RayTracingAccelStructBuildFlags: 1
   m_SmallMeshCulling: 1
-  m_ForceMeshLod: -1
-  m_MeshLodSelectionBias: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -11454,7 +11541,6 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 115
@@ -11479,7 +11565,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7300869772774144180}
   - component: {fileID: 6737821612096059156}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: 'ArmL[Armor]'
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -11521,8 +11607,6 @@ SpriteRenderer:
   m_RayTracingAccelStructBuildFlagsOverride: 0
   m_RayTracingAccelStructBuildFlags: 1
   m_SmallMeshCulling: 1
-  m_ForceMeshLod: -1
-  m_MeshLodSelectionBias: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -11544,7 +11628,6 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 105
@@ -11569,7 +11652,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6681870858192686284}
   - component: {fileID: 757453543851479230}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Finger
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -11612,8 +11695,6 @@ SpriteRenderer:
   m_RayTracingAccelStructBuildFlagsOverride: 0
   m_RayTracingAccelStructBuildFlags: 1
   m_SmallMeshCulling: 1
-  m_ForceMeshLod: -1
-  m_MeshLodSelectionBias: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -11635,7 +11716,6 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 85
@@ -11660,7 +11740,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7991297249321005000}
   - component: {fileID: 1338108659034442018}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: HandR
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -11707,8 +11787,6 @@ SpriteRenderer:
   m_RayTracingAccelStructBuildFlagsOverride: 0
   m_RayTracingAccelStructBuildFlags: 1
   m_SmallMeshCulling: 1
-  m_ForceMeshLod: -1
-  m_MeshLodSelectionBias: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -11730,7 +11808,6 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 380
@@ -11755,7 +11832,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8476485912917331976}
   - component: {fileID: 8274139432477971763}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: ArmL
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -11799,8 +11876,6 @@ SpriteRenderer:
   m_RayTracingAccelStructBuildFlagsOverride: 0
   m_RayTracingAccelStructBuildFlags: 1
   m_SmallMeshCulling: 1
-  m_ForceMeshLod: -1
-  m_MeshLodSelectionBias: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -11822,7 +11897,6 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 20
@@ -11848,7 +11922,7 @@ GameObject:
   - component: {fileID: 8737714031566160166}
   - component: {fileID: 2187909273624923892}
   - component: {fileID: 205386455441106728}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: BigFlash
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -16666,8 +16740,6 @@ ParticleSystemRenderer:
   m_RayTracingAccelStructBuildFlagsOverride: 0
   m_RayTracingAccelStructBuildFlags: 1
   m_SmallMeshCulling: 1
-  m_ForceMeshLod: -1
-  m_MeshLodSelectionBias: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -16690,7 +16762,6 @@ ParticleSystemRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 319
@@ -16736,7 +16807,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6854990466570312331}
   - component: {fileID: 927716727228643693}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: 'HandL[Armor]'
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -16778,8 +16849,6 @@ SpriteRenderer:
   m_RayTracingAccelStructBuildFlagsOverride: 0
   m_RayTracingAccelStructBuildFlags: 1
   m_SmallMeshCulling: 1
-  m_ForceMeshLod: -1
-  m_MeshLodSelectionBias: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -16801,7 +16870,6 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 370
@@ -16825,7 +16893,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8549720219504161799}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: FireTransform
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -16858,7 +16926,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3244581352153397402}
   - component: {fileID: 2767618222582374104}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Back
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -16900,8 +16968,6 @@ SpriteRenderer:
   m_RayTracingAccelStructBuildFlagsOverride: 0
   m_RayTracingAccelStructBuildFlags: 1
   m_SmallMeshCulling: 1
-  m_ForceMeshLod: -1
-  m_MeshLodSelectionBias: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -16923,7 +16989,6 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 5
@@ -16949,7 +17014,7 @@ GameObject:
   - component: {fileID: 6542493225169559994}
   - component: {fileID: 1133289945944936652}
   - component: {fileID: 651657626842430402}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: FlashLinger
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -21767,8 +21832,6 @@ ParticleSystemRenderer:
   m_RayTracingAccelStructBuildFlagsOverride: 0
   m_RayTracingAccelStructBuildFlags: 1
   m_SmallMeshCulling: 1
-  m_ForceMeshLod: -1
-  m_MeshLodSelectionBias: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -21791,7 +21854,6 @@ ParticleSystemRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 319
@@ -21838,7 +21900,7 @@ GameObject:
   - component: {fileID: 5158042933579342179}
   - component: {fileID: 3424102712437240624}
   - component: {fileID: 1610811386860082493}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Hair
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -21880,8 +21942,6 @@ SpriteRenderer:
   m_RayTracingAccelStructBuildFlagsOverride: 0
   m_RayTracingAccelStructBuildFlags: 1
   m_SmallMeshCulling: 1
-  m_ForceMeshLod: -1
-  m_MeshLodSelectionBias: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -21903,7 +21963,6 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 250
@@ -21938,8 +21997,6 @@ SpriteMask:
   m_RayTracingAccelStructBuildFlagsOverride: 0
   m_RayTracingAccelStructBuildFlags: 1
   m_SmallMeshCulling: 1
-  m_ForceMeshLod: -1
-  m_MeshLodSelectionBias: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -21961,7 +22018,6 @@ SpriteMask:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
@@ -21986,7 +22042,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6401794101690140227}
   - component: {fileID: 6817198666292909474}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: 'Leg[R]'
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -22030,8 +22086,6 @@ SpriteRenderer:
   m_RayTracingAccelStructBuildFlagsOverride: 0
   m_RayTracingAccelStructBuildFlags: 1
   m_SmallMeshCulling: 1
-  m_ForceMeshLod: -1
-  m_MeshLodSelectionBias: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -22053,7 +22107,6 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 140
@@ -22078,7 +22131,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7818789910208531155}
   - component: {fileID: 6780061314832534872}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Finger
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -22121,8 +22174,6 @@ SpriteRenderer:
   m_RayTracingAccelStructBuildFlagsOverride: 0
   m_RayTracingAccelStructBuildFlags: 1
   m_SmallMeshCulling: 1
-  m_ForceMeshLod: -1
-  m_MeshLodSelectionBias: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -22144,7 +22195,6 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 360
@@ -22169,7 +22219,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7829469060738327158}
   - component: {fileID: 8310291632767437134}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Shin
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -22212,8 +22262,6 @@ SpriteRenderer:
   m_RayTracingAccelStructBuildFlagsOverride: 0
   m_RayTracingAccelStructBuildFlags: 1
   m_SmallMeshCulling: 1
-  m_ForceMeshLod: -1
-  m_MeshLodSelectionBias: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -22235,7 +22283,6 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 145
@@ -22259,7 +22306,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1313346209304720436}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Edge
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -22292,7 +22339,7 @@ GameObject:
   - component: {fileID: 4541727780304870035}
   - component: {fileID: 1235042330892778828}
   - component: {fileID: 6036564433225628535}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Sparks
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -27056,8 +27103,6 @@ ParticleSystemRenderer:
   m_RayTracingAccelStructBuildFlagsOverride: 0
   m_RayTracingAccelStructBuildFlags: 1
   m_SmallMeshCulling: 1
-  m_ForceMeshLod: -1
-  m_MeshLodSelectionBias: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -27080,7 +27125,6 @@ ParticleSystemRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 319
@@ -27126,7 +27170,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8487221418519627530}
   - component: {fileID: 7193786461616268125}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: ForearmR
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -27171,8 +27215,6 @@ SpriteRenderer:
   m_RayTracingAccelStructBuildFlagsOverride: 0
   m_RayTracingAccelStructBuildFlags: 1
   m_SmallMeshCulling: 1
-  m_ForceMeshLod: -1
-  m_MeshLodSelectionBias: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -27194,7 +27236,6 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 210
@@ -27218,7 +27259,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3544529517054696451}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: MagazineTransform
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -27251,7 +27292,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5624777379494230691}
   - component: {fileID: 2496485888907527183}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: HandL
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -27298,8 +27339,6 @@ SpriteRenderer:
   m_RayTracingAccelStructBuildFlagsOverride: 0
   m_RayTracingAccelStructBuildFlags: 1
   m_SmallMeshCulling: 1
-  m_ForceMeshLod: -1
-  m_MeshLodSelectionBias: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -27321,7 +27360,6 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 80
@@ -27347,7 +27385,7 @@ GameObject:
   - component: {fileID: 886291592110068894}
   - component: {fileID: 6586846935439114302}
   - component: {fileID: 5292012261273680521}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Finger
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -27404,8 +27442,6 @@ SpriteRenderer:
   m_RayTracingAccelStructBuildFlagsOverride: 0
   m_RayTracingAccelStructBuildFlags: 1
   m_SmallMeshCulling: 1
-  m_ForceMeshLod: -1
-  m_MeshLodSelectionBias: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -27427,7 +27463,6 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 385
@@ -27452,7 +27487,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5026181503454251641}
   - component: {fileID: 527672517317951031}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: 'ForearmL[Armor]'
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -27494,8 +27529,6 @@ SpriteRenderer:
   m_RayTracingAccelStructBuildFlagsOverride: 0
   m_RayTracingAccelStructBuildFlags: 1
   m_SmallMeshCulling: 1
-  m_ForceMeshLod: -1
-  m_MeshLodSelectionBias: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -27517,7 +27550,6 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 30
@@ -27542,7 +27574,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6112781805661217134}
   - component: {fileID: 321867396671706771}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: 'HandL[Armor]'
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -27584,8 +27616,6 @@ SpriteRenderer:
   m_RayTracingAccelStructBuildFlagsOverride: 0
   m_RayTracingAccelStructBuildFlags: 1
   m_SmallMeshCulling: 1
-  m_ForceMeshLod: -1
-  m_MeshLodSelectionBias: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -27607,7 +27637,6 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 95
@@ -27632,7 +27661,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6415006679594251028}
   - component: {fileID: 1324063976813854583}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: 'Leg[Armor]'
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -27674,8 +27703,6 @@ SpriteRenderer:
   m_RayTracingAccelStructBuildFlagsOverride: 0
   m_RayTracingAccelStructBuildFlags: 1
   m_SmallMeshCulling: 1
-  m_ForceMeshLod: -1
-  m_MeshLodSelectionBias: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -27697,7 +27724,6 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 130
@@ -27722,7 +27748,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5429489134838848503}
   - component: {fileID: 7456493337160414150}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: 'SleeveR[Armor]'
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -27764,8 +27790,6 @@ SpriteRenderer:
   m_RayTracingAccelStructBuildFlagsOverride: 0
   m_RayTracingAccelStructBuildFlags: 1
   m_SmallMeshCulling: 1
-  m_ForceMeshLod: -1
-  m_MeshLodSelectionBias: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -27787,7 +27811,6 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 200
@@ -27812,7 +27835,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3598758129378967097}
   - component: {fileID: 4961072465830247433}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: 'ArmR[2]'
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -27856,8 +27879,6 @@ SpriteRenderer:
   m_RayTracingAccelStructBuildFlagsOverride: 0
   m_RayTracingAccelStructBuildFlags: 1
   m_SmallMeshCulling: 1
-  m_ForceMeshLod: -1
-  m_MeshLodSelectionBias: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -27879,7 +27900,6 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 170
@@ -27904,7 +27924,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2914496810075825075}
   - component: {fileID: 3036207342809167092}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Rifle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -27946,8 +27966,6 @@ SpriteRenderer:
   m_RayTracingAccelStructBuildFlagsOverride: 0
   m_RayTracingAccelStructBuildFlags: 1
   m_SmallMeshCulling: 1
-  m_ForceMeshLod: -1
-  m_MeshLodSelectionBias: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -27969,7 +27987,6 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 325

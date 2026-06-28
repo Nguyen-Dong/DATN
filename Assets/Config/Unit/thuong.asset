@@ -1,0 +1,21 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe810f30dcf57f645bd6b5d3b9799832, type: 3}
+  m_Name: thuong
+  m_EditorClassIdentifier: 
+  id: thuong
+  displayName: "Th\u01B0\u01A1ng"
+  icon: {fileID: 0}
+  prefab: {fileID: 4593261534034748746, guid: 60a2f6c6b20db2b41a9da9368c1298b0, type: 3}
+  goldCost: 50
+  unlockedByDefault: 0
+  diamondUnlockCost: 30

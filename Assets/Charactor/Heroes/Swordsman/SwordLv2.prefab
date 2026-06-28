@@ -145,6 +145,7 @@ MonoBehaviour:
   - {fileID: 2543106930933641826}
   radius: 0
   attacking: 0
+  isEnemyInRange: 0
 --- !u!1 &489118120308269928
 GameObject:
   m_ObjectHideFlags: 0
@@ -14422,7 +14423,7 @@ MonoBehaviour:
   LegR: {fileID: 2186110317639160281}
   MeleeWeapon:
   - {fileID: 8263779279453927400}
-  - {fileID: 8263779279453927400}
+  - {fileID: 5360899157639164647}
   Shield: {fileID: 948062792644135278}
   Bow:
   - {fileID: 4050957211537627344}
@@ -14509,10 +14510,12 @@ MonoBehaviour:
   maxHealth: 0
   currentHealth: 0
   dead: 0
+  spawnJitterX: 0.2
+  spawnJitterY: 0.4
   lieDown: 0
   attack: {fileID: 0}
+  animationEvent: {fileID: 0}
   movement: {fileID: 0}
-  takeDamgeParticles: {fileID: 0}
 --- !u!1 &4585122499381242659
 GameObject:
   m_ObjectHideFlags: 0

@@ -1,0 +1,21 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe810f30dcf57f645bd6b5d3b9799832, type: 3}
+  m_Name: cung
+  m_EditorClassIdentifier: 
+  id: cung
+  displayName: Cung
+  icon: {fileID: 0}
+  prefab: {fileID: 2211708485110205865, guid: d0bc9aee1a8902341889b734caa8e56f, type: 3}
+  goldCost: 50
+  unlockedByDefault: 0
+  diamondUnlockCost: 30

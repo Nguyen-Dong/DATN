@@ -7,8 +7,8 @@ public class GameCommander : MonoBehaviour
 {
     public static event Action<CommandState> OnCommandStateChanged;
     public enum CommandState { Defend, Attack, Retreat }
-    // Mặc định khi mua lính sẽ ở chế độ Phòng thủ
-    public static CommandState currentState = CommandState.Defend;
+    // Mặc định khi vào game sẽ ở chế độ Tấn công
+    public static CommandState currentState = CommandState.Attack;
 
     [Header("State Buttons")]
     [SerializeField] public Button btnAttack;
@@ -37,12 +37,12 @@ public class GameCommander : MonoBehaviour
 
     private void Start()
     {
-        currentState = CommandState.Defend;
+        currentState = CommandState.Attack;
         btnAttack.onClick.AddListener(SetAttackCommand);
         btnDefend.onClick.AddListener(SetDefendCommand);
         btnRetreat.onClick.AddListener(SetRetreatCommand);
 
-        // Cập nhật trạng thái nút ban đầu - mặc định là Defend
+        // Cập nhật trạng thái nút ban đầu - mặc định là Tấn công
         UpdateButtonVisuals();
     }
 
@@ -143,6 +143,10 @@ public class GameCommander : MonoBehaviour
 
             // Đánh dấu là lính cung rút lui
             archer.tag = "RetreatArcher";
+
+            // Gán thẳng điểm đứng yểm trợ (marker kéo trong Inspector) cho cung thủ
+            ArcherMovement am = archer.GetComponentInChildren<ArcherMovement>();
+            if (am != null) am.SetRetreatStandPoint(archerStandPoint);
 
             // Lưu reference
             retreatArchers.Add(archer);

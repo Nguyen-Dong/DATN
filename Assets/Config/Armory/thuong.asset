@@ -1,0 +1,42 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 16db0a084b76f5d45a0e53f650aa2955, type: 3}
+  m_Name: thuong
+  m_EditorClassIdentifier: Assembly-CSharp::TroopUpgradeSO
+  troopType: 2
+  unitDef: {fileID: 11400000, guid: 00cc984a3b21cf2488c5e9d76f73e09d, type: 2}
+  weaponLevels:
+  - atk: 4
+    visualPrefab: {fileID: 4593261534034748746, guid: 60a2f6c6b20db2b41a9da9368c1298b0, type: 3}
+    price: 1
+  - atk: 8
+    visualPrefab: {fileID: 7031703218345084926, guid: b4385296518a97844aa287ff5e55dbce, type: 3}
+    price: 1
+  - atk: 12
+    visualPrefab: {fileID: 2437704554393439384, guid: f2e4a7097651ddd4da455ac644c1538d, type: 3}
+    price: 1
+  - atk: 23
+    visualPrefab: {fileID: 3503856577652290411, guid: 3f416b48c9db644478e644899b884594, type: 3}
+    price: 1
+  armorLevels:
+  - def: 5
+    visualPrefab: {fileID: 4593261534034748746, guid: 60a2f6c6b20db2b41a9da9368c1298b0, type: 3}
+    price: 1
+  - def: 10
+    visualPrefab: {fileID: 7031703218345084926, guid: b4385296518a97844aa287ff5e55dbce, type: 3}
+    price: 1
+  - def: 18
+    visualPrefab: {fileID: 2437704554393439384, guid: f2e4a7097651ddd4da455ac644c1538d, type: 3}
+    price: 1
+  - def: 25
+    visualPrefab: {fileID: 3503856577652290411, guid: 3f416b48c9db644478e644899b884594, type: 3}
+    price: 1

@@ -1,0 +1,21 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe810f30dcf57f645bd6b5d3b9799832, type: 3}
+  m_Name: kiem
+  m_EditorClassIdentifier: 
+  id: kiem
+  displayName: "Ki\u1EBFm"
+  icon: {fileID: 0}
+  prefab: {fileID: 929906232887089001, guid: 759e2a2d198c80c43ba2de399b298050, type: 3}
+  goldCost: 50
+  unlockedByDefault: 1
+  diamondUnlockCost: 30
